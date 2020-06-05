@@ -260,16 +260,16 @@ class ApplicationStyle:
             selectedLayer.loadNamedStyle(filename_style)
             
             selectedLayerName = selectedLayer.name()
+            
             ## EXPORT LAYOUT ##
             
-                #test4
-             # Add a map with layers to the layout
+            # Add a map with layers to the layout
             layers = QgsProject.instance().mapLayersByName(selectedLayerName)
             layer = layers[0]
             
             project = QgsProject.instance()
             manager = project.layoutManager()
-            layoutName = 'Layout1'
+            layoutName = 'Miseenpage'
             layouts_list = manager.printLayouts()
             # remove any duplicate layouts
             for layout in layouts_list:
@@ -280,11 +280,11 @@ class ApplicationStyle:
             layout.setName(layoutName)
             manager.addLayout(layout)
             
-            # create map item in the layout
+            # Create map item in the layout
             map = QgsLayoutItemMap(layout)
             map.setRect(20,20,20,20)
             
-            # set a map extent
+            # Set a map extent
             ms = QgsMapSettings()
             ms.setLayers([layer]) # set layers to be mapped
             rect = QgsRectangle(ms.fullExtent())
@@ -298,14 +298,13 @@ class ApplicationStyle:
             
             # Add a legend
             legend = QgsLayoutItemLegend(layout)
-            legend.setTitle("Legend")
+            legend.setTitle("Légende")
             layerTree = QgsLayerTree()
             layerTree.addLayer(layer)
-            #legend.model().setRootGroup(layerTree)
             layout.addLayoutItem(legend)
-            legend.attemptMove(QgsLayoutPoint(200,15,QgsUnitTypes.LayoutMillimeters))
+            legend.attemptMove(QgsLayoutPoint(200,100,QgsUnitTypes.LayoutMillimeters))
             
-            #Add a scalebar
+            # Add a scalebar
             scalebar = QgsLayoutItemScaleBar(layout)
             scalebar.setStyle('Line Ticks Up') # let's people choose in the menu of the plugin for the next version
             scalebar.setUnits(QgsUnitTypes.DistanceKilometers)
@@ -316,16 +315,16 @@ class ApplicationStyle:
             scalebar.setUnitLabel('km')
             scalebar.setFont(QFont('Arial',14))
             scalebar.update()
-            layout.addLayoutItem(scalebar)
+            layout.addLayoutItem(scalebar) # add the scalebar to the layout
             scalebar.attemptMove(QgsLayoutPoint(220,190,QgsUnitTypes.LayoutMillimeters))
             
-            #Add a title
+            # Add a title
             title = QgsLayoutItemLabel(layout)
-            title.setText('Titre')
+            title.setText("Cartographie d'une zone arborée")
             title.setFont(QFont('Arial',24))
             title.adjustSizeToText()
-            layout.addLayoutItem(title)
-            title.attemptMove(QgsLayoutPoint(10,5,QgsUnitTypes.LayoutMillimeters))
+            layout.addLayoutItem(title) # add the title to the layout
+            title.attemptMove(QgsLayoutPoint(100,5,QgsUnitTypes.LayoutMillimeters))
             
             # Export a map layout
             layout = manager.layoutByName(layoutName)
@@ -335,7 +334,7 @@ class ApplicationStyle:
             elif '.pdf' in filename_output:
                 exporter.exportToPdf(filename_output, QgsLayoutExporter.PdfExportSettings())
                 
-
+            # Send a message 
             self.iface.messageBar().pushMessage(
             "Success", "worked",
                 level=Qgis.Success, duration=3)
