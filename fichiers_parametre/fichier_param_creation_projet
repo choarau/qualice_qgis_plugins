@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF8"?>
+<project_creation>
+	<project_properties>
+		<name>?</name>
+		<path_project>?</path_project>
+		<zoom>...</zoom>
+		<background_color>
+            <red>166</red>
+            <green>206</green>
+            <blue>227</blue>
+        </background_color>
+		<scr>
+			<coords_sys_ref>WGS84</coords_sys_ref>
+			<id_certified>EPSG:4326</id_certified>
+		</scr>
+		<construction>
+			<path_construction>?</path_construction>
+		</construction>
+		<other_dir>
+			<style_dir>?</style_dir>
+			<worldmap_dir>?</worldmap_dir>
+			<dap_dir>?</dap_dir>
+		</other_dir>
+		<origin_satellite_image>?</origin_satellite_image>
+	</project_properties>
+	<project_structure>
+		<layer_background name="CARTO_MONDIALE"/>
+		<layer_group name="I" value="Introduction"> 
+			<layer_group name="PU_C" value="PU du chantier">
+				<layer name="DC" style="?">
+					<name></name>
+				</layer>
+				<layer name="PERF_V1" style="?">
+					<name></name>
+				</layer>
+				<layer name="EMP_V1" style="?">
+					<name></name>
+				</layer>
+				<layer name="Zones_ARC" style="?">
+					<name></name>
+				</layer>
+			</layer_group>
+		</layer_group>
+		<layer_group name="PC" value="Presentation du chantier">
+			<layer name="EMP_EF" style="?">
+				<name></name>
+			</layer>
+			<layer name="EMP_V1" style="?">
+				<name></name>
+			</layer>
+			<layer name="Zones_ARC" style="?">
+				<name></name>
+			</layer>
+			<layer_group name="DS" value="Donnes sources">
+				<layer name="SG_Caracteristix" style="?">
+				<name></name>
+				</layer>
+				<layer name="EMP_V1" style="?">
+					<name></name>
+				</layer>
+				<layer name="SG_Caracteristix" style="?">
+					<name></name>
+				</layer>
+				</layer_group>
+		</layer_group>
+		<layer_group name="CPP" value="Controle de la precision planimetrique">
+			<layer_group name="CCA" value="Controle du respect des contraintes d'angles">
+				<layer_group name="C20" value="Respect de la contrainte d'angle maximal"/>
+				<layer_group name="CDCZU" value="Respect des contraintes sur les zones DCZU"/>
+				<layer_group name="CR" value="Respect des contraintes sur les zones de relief"/>
+			</layer_group>			
+			<layer_group name="CC" value="Controle du Calage"> 
+				<layer_group name="AA" value="Alertes appui"/>
+				<layer_group name="AL" value="Alertes liaison"/>
+				<layer_group name="PREC" value="Analyse des parametres estimes et du pre-calage"/>
+				<layer_group name="AB_ET" value="Analyse des biais et écarts-types"/>
+			</layer_group>
+			<layer_group name="CR" value="Controle de la rectification"> 
+				<layer_group name="AAMER" value="Analyse des mesures sur les points de la BD_AMER"/>
+				<layer_group name="CVISU" value="Contrôle visuel des orthos unitaires"/>			
+			</layer_group>
+		</layer_group>
+		<layer_group name="CCG" value="Controles de coherence geometrique">
+			<layer_group name="CGDAP" value="Coherence geometrique sur donnees d'appui"/> 
+		</layer_group>
+	</project_structure>
+	<project_import>
+		<layers_import>
+			<!-- SHPMONDE -->
+			<layer_background path="CARTO_MONDIALE" contain="" name="" filter="shp" id="0">
+			
+			</layer_background>
+			<layer_background path="Zones_ARC" contain="" name="" filter="shp" id="1">
+			
+			</layer_background>
+			<!-- PREPA -->
+			<layer path="1_PREPA\PERF" contain="PERF_V1" name="" filter="shp" id="2">
+			</layer>
+			<layer path="1_PREPA\DC" contain="DC" name="" filter="shp" id="3">
+				
+			</layer>
+			<layer path="1_PREPA\DC\REPRISES" contain="DC_REPRIS" name="" filter="shp" id="4">
+				
+			</layer>
+			<layer path="1_PREPA\EMPRISE" contain="EMP_V1" name="" filter="shp" id="5">
+				
+			</layer>
+			<layer path="1_PREPA\EF" contain="EMP_EF" name="" filter="shp" id="6">
+				
+			</layer>
+			<layer path="1_PREPA\SPROG" contain="SPROG_V1" name="" filter="shp" id="7">
+			
+			</layer>
+			<layer path="1_PREPA\VILLES" contain="VILLES" name="" filter="shp" id="8">
+				
+			</layer>
+			<layer path="1_PREPA\CONTRAINTES\DCZU" contain="DCZU_V2_fusion" name="" filter="shp" id="9">
+				
+			</layer>
+			<layer path="1_PREPA\CONTRAINTES\DCOS" contain="DCOS_V2_fusion" name="" filter="shp" id="10">
+				
+			</layer>
+			<!-- CALIX -->
+			<layer path="3_QUALIF_CALIX\CALIX" contain="AMERS_actifs_geo" name="" filter="shp" id="11">
+				
+			</layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="AMERS_inactifs_geo" name="" filter="shp" id="12">
+			</layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="LIAISONS_actifs_geo" name="" filter="shp" id="13">
+				
+			</layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="LIAISONS_inactifs_geo" name="" filter="shp" id="14">
+			
+			</layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_Caracteristix" name="" filter="shp" id="15">
+				
+			</layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio." name="" filter="shp" id="16">
+				
+			</layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_APPUI" name="" filter="shp" id="17">
+				
+			</layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_LIAISON" name="" filter="shp" id="18">
+				
+			</layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="STAT_AMER" name="" filter="shp" id="19">
+				
+			</layer>
+			
+			<!-- Fichiers DAP -->
+			
+			<layer_DAP path="" contain="Empilements" name="" filter="shp" id="20">
+			</layer_DAP>
+			<layer_DAP path="" contain="Albatros" name="" filter="shp" id="21">
+			</layer_DAP>
+		</layers_import>
+		<styles_import>
+			<styles path="ALERTES"></styles>			<!-- STYLE -->
+			<styles path="ANALYSES"></styles>	
+			<styles path="BD_AMER"></styles>	
+			<styles path="DAP"></styles>	
+			<styles path="DC"></styles>	
+			<styles path="EMPRISES"></styles>	
+			<styles path="INCIDENCE"></styles>	
+			<styles path="PERF"></styles>	
+			<styles path="PHR"></styles>	
+			<styles path="PROG"></styles>	
+			<styles path="PU"></styles>	
+			<styles path="SPOT"></styles>
+			<styles path="VILLES"></styles>		
+			<styles path="ZONE_MONTAGNE"></styles>				
+		</styles_import>
+	</project_import>
+</project_creation>
