@@ -1,0 +1,174 @@
+<project_creation>
+	<project_properties>
+		<name>MARA_OR4</name>
+		<path_project>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\QGIS\MARA_OR4.qgs</path_project>
+		<zoom>...</zoom>
+		<background_color>
+            <red>166</red>
+            <green>206</green>
+            <blue>227</blue>
+        </background_color>
+		<scr>
+			<coords_sys_ref>WGS84</coords_sys_ref>
+			<id_certified>EPSG:4326</id_certified>
+		</scr>
+		<construction>
+			<path_construction>D:\DONNEES_STAGE\MARA_OR4</path_construction>
+		</construction>
+		<other_dir>
+			<style_dir>D:\DONNEES_STAGE\Style_QGIS_organise</style_dir>
+			<worldmap_dir>D:\DONNEES_STAGE\SHP_Monde</worldmap_dir>
+			<dap_dir>D:\DONNEES_STAGE\DAP_MARA_OR4</dap_dir>
+		</other_dir>
+		<origin_satellite_image>PHR</origin_satellite_image>
+	</project_properties>
+	<project_structure>
+		<layer_background name="CARTO_MONDIALE"/>
+		<layer_group name="I" value="Introduction"> 
+			<layer_group name="PU_C" value="PU du chantier">
+				<layer name="DC" style="?">
+					<name/>
+				</layer>
+				<layer name="PERF_V1" style="?">
+					<name/>
+				</layer>
+				<layer name="EMP_V1" style="?">
+					<name/>
+				</layer>
+				<layer name="Zones_ARC" style="?">
+					<name/>
+				</layer>
+			</layer_group>
+		</layer_group>
+		<layer_group name="PC" value="Presentation du chantier">
+			<layer name="EMP_EF" style="?">
+				<name/>
+			</layer>
+			<layer name="EMP_V1" style="?">
+				<name/>
+			</layer>
+			<layer name="Zones_ARC" style="?">
+				<name/>
+			</layer>
+			<layer_group name="DS" value="Donnes sources">
+				<layer name="SG_Caracteristix" style="?">
+				<name/>
+				</layer>
+				<layer name="EMP_V1" style="?">
+					<name/>
+				</layer>
+				<layer name="SG_Caracteristix" style="?">
+					<name/>
+				</layer>
+				</layer_group>
+		</layer_group>
+		<layer_group name="CPP" value="Controle de la precision planimetrique">
+			<layer_group name="CCA" value="Controle du respect des contraintes d'angles">
+				<layer_group name="C20" value="Respect de la contrainte d'angle maximal"/>
+				<layer_group name="CDCZU" value="Respect des contraintes sur les zones DCZU"/>
+				<layer_group name="CR" value="Respect des contraintes sur les zones de relief"/>
+			</layer_group>			
+			<layer_group name="CC" value="Controle du Calage"> 
+				<layer_group name="AA" value="Alertes appui"/>
+				<layer_group name="AL" value="Alertes liaison"/>
+				<layer_group name="PREC" value="Analyse des parametres estimes et du pre-calage"/>
+				<layer_group name="AB_ET" value="Analyse des biais et &#233;carts-types"/>
+			</layer_group>
+			<layer_group name="CR" value="Controle de la rectification"> 
+				<layer_group name="AAMER" value="Analyse des mesures sur les points de la BD_AMER"/>
+				<layer_group name="CVISU" value="Contr&#244;le visuel des orthos unitaires"/>			
+			</layer_group>
+		</layer_group>
+		<layer_group name="CCG" value="Controles de coherence geometrique">
+			<layer_group name="CGDAP" value="Coherence geometrique sur donnees d'appui"/> 
+		</layer_group>
+	</project_structure>
+	<project_import>
+		<layers_import>
+			<!-- SHPMONDE -->
+			<layer_background path="CARTO_MONDIALE" contain="" name="CARTO_MONDIALE" filter="shp" id="0">
+			
+			<path>D:\DONNEES_STAGE\SHP_Monde\CARTO_MONDIALE\CARTO_MONDIALE.shp</path></layer_background>
+			<layer_background path="Zones_ARC" contain="" name="Zones_ARC" filter="shp" id="1">
+			
+			<path>D:\DONNEES_STAGE\SHP_Monde\Zones_ARC\Zones_ARC.shp</path></layer_background>
+			<!-- PREPA -->
+			<layer path="1_PREPA\PERF" contain="PERF_V1" name="PERF_V1" filter="shp" id="2">
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\PERF\GS_ETD_EC15_2_OR4_PERF_V1.shp</path></layer>
+			<layer path="1_PREPA\DC" contain="DC" name="DC" filter="shp" id="3">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\DC\DC_MARA_OR4.shp</path></layer>
+			<layer path="1_PREPA\DC\REPRISES" contain="DC_REPRIS" name="DC_REPRIS" filter="shp" id="4">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\DC\REPRISES\DC_REPRIS.shp</path></layer>
+			<layer path="1_PREPA\EMPRISE" contain="EMP_V1" name="EMP_V1" filter="shp" id="5">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\EMPRISE\GS_20190312_MARA_OR4_EMP_V1.shp</path></layer>
+			<layer path="1_PREPA\EF" contain="EMP_EF" name="EMP_EF" filter="shp" id="6">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\EF\EMP_EF15.shp</path></layer>
+			<layer path="1_PREPA\SPROG" contain="SPROG_V1" name="SPROG_V1" filter="shp" id="7">
+			
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\SPROG\GS_ETD_EC15_2_OR4_SPROG_V1.shp</path></layer>
+			<layer path="1_PREPA\VILLES" contain="VILLES" name="VILLES" filter="shp" id="8">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\VILLES\VILLES.shp</path></layer>
+			<layer path="1_PREPA\CONTRAINTES\DCZU" contain="DCZU_V2_fusion" name="DCZU_V2_fusion" filter="shp" id="9">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\CONTRAINTES\DCZU\UC15_2_MARA_OR4_DCZU_V2_fusion.shp</path></layer>
+			<layer path="1_PREPA\CONTRAINTES\DCOS" contain="DCOS_V2_fusion" name="DCOS_V2_fusion" filter="shp" id="10">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\CONTRAINTES\DCOS\UC15_2_MARA_OR4_DCOS_V2_fusion.shp</path></layer>
+			<!-- CALIX -->
+			<layer path="3_QUALIF_CALIX\CALIX" contain="AMERS_actifs_geo" name="AMERS_actifs_geo" filter="shp" id="11">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\AMERS_actifs_geo.shp</path></layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="AMERS_inactifs_geo" name="AMERS_inactifs_geo" filter="shp" id="12">
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\AMERS_inactifs_geo.shp</path></layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="LIAISONS_actifs_geo" name="LIAISONS_actifs_geo" filter="shp" id="13">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\LIAISONS_actifs_geo.shp</path></layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="LIAISONS_inactifs_geo" name="LIAISONS_inactifs_geo" filter="shp" id="14">
+			
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\LIAISONS_inactifs_geo.shp</path></layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_Caracteristix" name="SG_Caracteristix" filter="shp" id="15">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\SG_Caracteristix.shp</path></layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio." name="SG_EquipementSpatio" filter="shp" id="16">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\SG_EquipementSpatio.shp</path></layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_APPUI" name="SG_EquipementSpatio_APPUI" filter="shp" id="17">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\SG_EquipementSpatio_APPUI.shp</path></layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_LIAISON" name="SG_EquipementSpatio_LIAISON" filter="shp" id="18">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\SG_EquipementSpatio_LIAISON.shp</path></layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="STAT_AMER" name="STAT_AMER" filter="shp" id="19">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\STAT_AMER_190329_MARA_OR4_geo.shp</path></layer>
+			
+			<!-- Fichiers DAP -->
+			
+			<layer_DAP path="" contain="Empilements" name="Empilements" filter="shp" id="20">
+			<path>D:\DONNEES_STAGE\DAP_MARA_OR4\MARA_OR4_Empilements_CORREL_synthese.shp</path></layer_DAP>
+			<layer_DAP path="" contain="Albatros" name="Albatros" filter="shp" id="21">
+			<path>D:\DONNEES_STAGE\DAP_MARA_OR4\MARA_OR4_Albatros_CORREL_synthese.shp</path></layer_DAP>
+		</layers_import>
+		<styles_import>
+			<styles path="ALERTES"><style name="Alerte_Equip_Appui" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Appui.qml</path><style name="Alerte_Equip_Appui_De&#9568;&#252;tails" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Appui_De&#9568;&#252;tails.qml</path><style name="Alerte_Equip_Appui_Liaison" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Appui_Liaison.qml</path><style name="Alerte_Equip_Liaison" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Liaison.qml</path><style name="Style_STAT_AMER" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Style_STAT_AMER.qml</path></styles>			<!-- STYLE -->
+			<styles path="ANALYSES"><style name="Style_SPATIO_QUALIF_geo_DXY_APP" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ANALYSES\Style_SPATIO_QUALIF_geo_DXY_APP.qml</path><style name="Style_SPATIO_QUALIF_geo_DXY_LNK" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ANALYSES\Style_SPATIO_QUALIF_geo_DXY_LNK.qml</path><style name="Style_SPATIO_QUALIF_geo_ECTXY_APP" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ANALYSES\Style_SPATIO_QUALIF_geo_ECTXY_APP.qml</path><style name="Style_SPATIO_QUALIF_geo_ECTXY_LNK" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ANALYSES\Style_SPATIO_QUALIF_geo_ECTXY_LNK.qml</path></styles>	
+			<styles path="BD_AMER"><style name="Style_STAT_AMER" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\BD_AMER\Style_STAT_AMER.qml</path></styles>	
+			<styles path="DAP"><style name="Style_Albatros" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\DAP\Style_Albatros.qml</path><style name="Style_DAP" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\DAP\Style_DAP.qml</path><style name="Style_DAP_synthese" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\DAP\Style_DAP_synthese.qml</path><style name="Style_Empilement" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\DAP\Style_Empilement.qml</path></styles>	
+			<styles path="DC"><style name="Style_DC_MARA" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\DC\Style_DC_MARA.qml</path><style name="Style_DC_Repris" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\DC\Style_DC_Repris.qml</path></styles>	
+			<styles path="EMPRISES"><style name="Style_ARC_PU_Chantier" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\EMPRISES\Style_ARC_PU_Chantier.qml</path><style name="Style_EF15" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\EMPRISES\Style_EF15.qml</path><style name="Style_Emprise_Chantier_N" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\EMPRISES\Style_Emprise_Chantier_N.qml</path><style name="Style_Emprise_Chantier_N_SansNom" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\EMPRISES\Style_Emprise_Chantier_N_SansNom.qml</path><style name="Style_Emprise_DAP" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\EMPRISES\Style_Emprise_DAP.qml</path><style name="Style_Emprise_MARA_EF15" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\EMPRISES\Style_Emprise_MARA_EF15.qml</path><style name="Style_Emprise_PU_Chantier" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\EMPRISES\Style_Emprise_PU_Chantier.qml</path></styles>	
+			<styles path="INCIDENCE"><style name="Style_incidence_1520" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\INCIDENCE\Style_incidence_1520.qml</path><style name="Style_Incidence_MAX_SPOT" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\INCIDENCE\Style_Incidence_MAX_SPOT.qml</path><style name="Style_incidence_supinf_15" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\INCIDENCE\Style_incidence_supinf_15.qml</path><style name="Style_Incidence_sup_25" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\INCIDENCE\Style_Incidence_sup_25.qml</path><style name="style_SEG_INF_15deg" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\INCIDENCE\style_SEG_INF_15deg.qml</path><style name="style_SEG_SUP_15deg" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\INCIDENCE\style_SEG_SUP_15deg.qml</path></styles>	
+			<styles path="PERF"><style name="Style_Perf" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\PERF\Style_Perf.qml</path></styles>	
+			<styles path="PHR"><style name="Style_PHR1A" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\PHR\Style_PHR1A.qml</path><style name="Style_PHR1B" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\PHR\Style_PHR1B.qml</path></styles>	
+			<styles path="PROG"><style name="Style_Progr" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\PROG\Style_Progr.qml</path></styles>	
+			<styles path="PU"/>	
+			<styles path="SPOT"><style name="Style_PHR_Precalage" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\SPOT\Style_PHR_Precalage.qml</path><style name="Style_SPOT6" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\SPOT\Style_SPOT6.qml</path><style name="Style_SPOT7" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\SPOT\Style_SPOT7.qml</path><style name="Style_SPOT_Precalage" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\SPOT\Style_SPOT_Precalage.qml</path></styles>
+			<styles path="VILLES"><style name="Style_Urbain_Dense" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\VILLES\Style_Urbain_Dense.qml</path><style name="Style_ville" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\VILLES\Style_ville.qml</path><style name="Style_ville_urbain_dense" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\VILLES\Style_ville_urbain_dense.qml</path></styles>		
+			<styles path="ZONE_MONTAGNE"><style name="style_zone_montagnes" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ZONE_MONTAGNE\style_zone_montagnes.qml</path><style name="Style_zone_montagnes_or3" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ZONE_MONTAGNE\Style_zone_montagnes_or3.qml</path><style name="Style_zone_montagnes_or4" id=""/><path>D:\DONNEES_STAGE\Style_QGIS_organise\ZONE_MONTAGNE\Style_zone_montagnes_or4.qml</path></styles>				
+		</styles_import>
+	</project_import>
+</project_creation>
