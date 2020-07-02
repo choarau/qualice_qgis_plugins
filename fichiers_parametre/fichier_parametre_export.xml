@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export_images>
+	<properties>
+		<name_project>?</name_project>
+		<path>?</path>
+	</properties>
+	<export>
+		<image>
+			<title>PU du chantier</title>
+			<map>
+				<layer name="DC_CHANTIER"/>
+				<layer name="PERF_CHANTIER"/>
+				<layer name="EMPRISE"/>
+				<layer name="ZONES_ARC"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="no">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Emprise du chantier</title>
+			<map>
+				<layer name="EMPRISE_EF"/>
+				<layer name="EMPRISE"/>
+				<layer name="ZONES_ARC"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="no">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title></title>
+			<map>
+				<layer name="Pleiades 1A"/>
+				<layer name="Spot 7"/>
+				<layer name="Pleiades 1B"/>
+				<layer name="Spot 6"/>
+				<layer name="PROGRAMMATIONS_RESIDUELLES"/>
+				<layer name="DC_REPRIS"/>
+				<layer name="EMPRISE"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title>Images sources pour le chantier</title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Incidence moyenne</title>
+			<map>
+				<layer name="INCIDENCE_MOY"/>
+				<layer name="EMPRISE"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Incidence maximale</title>
+			<map>
+				<layer name="INCIDENCE_MOY"/>
+				<layer name="INCIDENCE_MAX"/>
+				<layer name="EMPRISE"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exists="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Angles d'incidence sur les zones DCZU</title>
+			<map>
+				<layer name="INCIDENCE"/>
+				<layer name="URBAIN"/>
+				<layer name="EMPRISE"/>
+				<layer name="URBAIN_DENSE"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Respect des contraintes d'angles sur zones de relief</title>
+			<map>
+				<layer name="INCIDENCE_ANGLE_15"/>
+				<layer name="ZONES_MONTAGNES"/>
+				<layer name="EMPRISE"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Alertes sur l'équipement en appui</title>
+			<map>
+				<layer name="ALERTES_APPUI"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Alertes sur l'équipement en liaison</title>
+			<map>
+				<layer name="ALERTES_LIAISON"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Alertes sur les paramètres de recalage</title>
+			<map>
+				<layer name="PRECALAGE_PHR"/>
+				<layer name="PRECALAGE_SPOT"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Biais XY sur les points d'appui</title>
+			<map>
+				<layer name="BIAIS_APPUI"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Ecarts-types XY sur les points d'appui</title>
+			<map>
+				<layer name="ECARTTYPE_APPUI"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Biais XY sur les points de liaison</title>
+			<map>
+				<layer name="BIAIS_LIAISON"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Ecarts-types XY sur les points de liaison</title>
+			<map>
+				<layer name="ECARTTYPE_LIAISON"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Localisation des alertes du contrôle sur la BD_AMER </title>
+			<map>
+				<layer name="STAT_AMER"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+		<image>
+			<title>Mesures géométriques sur données d’appu</title>
+			<map>
+				<layer name="EMPILEMENTS"/>
+				<layer name="ALBATROS"/>
+				<layer name="EMPRISE"/>
+				<scale></scale>
+				<size></size>
+			</map>
+			<legende exist="yes">
+				<title></title>
+				<font></font>
+				<x></x>
+				<y></y>
+			</legende>
+		</image>
+	</export>
+</export_images>

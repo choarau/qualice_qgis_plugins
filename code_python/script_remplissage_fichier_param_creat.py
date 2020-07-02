@@ -11,7 +11,7 @@ from lxml import etree
 import xml.etree.ElementTree as ET
 
 
-def create_parametersFile_IMPORT(main_path,type_import, tag ):
+def create_parametersFile_IMPORT(main_path, type_import,tag ):
     """ Remplis les differentes sous parties de la balise <project_import>
         
         Entree :
@@ -25,17 +25,15 @@ def create_parametersFile_IMPORT(main_path,type_import, tag ):
     """
     if type_import == "layers":
         
-        #se positionne sur la balise que l'on veut remplir
-        tree_path = "/project_creation/project_import/layers_import/"+tag
-        
         #parcours des sous-balises
-        for noeud in tree.xpath(tree_path):
+        for noeud in root[2][0].findall(tag):
             #pour chaque sous-balise on ajoute un element path
             relative_path = noeud.get('path')
             #construction du chemin absolue pour acceder au dossier des couches
             path_1 = os.path.join(main_path,relative_path)
             #recuperation de la liste des fichiers
             list_files = os.listdir(path_1)
+            layer_exist = ""
             #parcours les fichiers
             for file in list_files:
                 #si le fichier repond aux criteres de la sous-balise :
@@ -45,28 +43,33 @@ def create_parametersFile_IMPORT(main_path,type_import, tag ):
                     path_2 = etree.SubElement(noeud, "path")
                     p = os.path.join(path_1,file)
                     path_2.text =  os.path.normpath(p) 
+                    layer_exist += path_2.text
                     if "SHP_Monde" in path_2.text:
                        name = file.replace(".shp","")
                     else:
                        name = noeud.get("contain")
                        name = name.replace(".","")
-                    noeud.set("name",name)
+                    noeud.set("layer_name",name)
+            if layer_exist=="":
+                root[2][0].remove(noeud)
+                    
+                    
     else:
-        tree_path = "/project_creation/project_import/styles_import/styles"
-        for noeud in tree.xpath(tree_path):
+        
+        for noeud in root[2][1].findall(tag):
             relative_path = noeud.get('path')
             path_1 = os.path.join(main_path,relative_path)
             list_files = os.listdir(path_1)
             for file in list_files:
                style = etree.SubElement(noeud, "style")
                name = file.replace(".qml","")
-               style.set("name",name)
+               style.set("style_name",name)
                style.set("id","")
-               path_2 = etree.SubElement(noeud, "path")
+               path_2 = etree.SubElement(style, "path")
                p = os.path.join(path_1,file)
                path_2.text =  os.path.normpath(p) 
                 
-def create_parametersFile_PARAMETERS( path_carto_mondiale,path_dap, path_style, path_construction, origin_satellite_image):
+def create_parametersFile_PARAMETERS( path_carto_mondiale,path_dap, path_style, path_construction, source_satellite_image):
     """ Remplis les differentes sous parties de la balise <project_properties>
         
         Entree :
@@ -98,32 +101,39 @@ def create_parametersFile_PARAMETERS( path_carto_mondiale,path_dap, path_style, 
         noeud.text = path_carto_mondiale
     for noeud in tree.xpath(tree_path+"/other_dir/dap_dir"):
         noeud.text = path_dap
-    for noeud in tree.xpath(tree_path+"/origin_satellite_image"):
-        noeud.text = origin_satellite_image
-               
+    for noeud in tree.xpath(tree_path+"/source_satellite_image"):
+        noeud.text = source_satellite_image
+
+def export():
+    tree_path = "/export_images/properties"
+    for noeud in tree.xpath(tree_path):
+        return
+    
 if __name__=='__main__':
     #initialisation de l'arbre du fichier .xml
-    tree = etree.parse(r"C:\Users\segau\OneDrive\Documents\Stage\fichiers_param\fichier_param_creation_projet")
+    tree = etree.parse("fichier_parametre_creation_projet_2.xml")
+    root = tree.getroot()
+
     #parametres qui seront fournis par l'interface
     path_carto_mondiale = "D:\DONNEES_STAGE\SHP_Monde"
-    path_dap = "D:\DONNEES_STAGE\DAP_MARA_OR4"
+    path_dap = "D:\DONNEES_STAGE\DAP_MARA_OR3"
     path_style = "D:\DONNEES_STAGE\Style_QGIS_organise"
-    path_construction = "D:\DONNEES_STAGE\MARA_OR4"
-    origin_satellite_image = "PHR"
+    path_construction = "D:\DONNEES_STAGE\MARA_OR3"
+    source_satellite_image = "PHR"
     
     #remplissage du .xml
     
     #partie parametres du projet
-    create_parametersFile_PARAMETERS( path_carto_mondiale,path_dap, path_style, path_construction, origin_satellite_image)
+    create_parametersFile_PARAMETERS( path_carto_mondiale,path_dap, path_style, path_construction, source_satellite_image)
     
     #partie import du projet
-    create_parametersFile_IMPORT(path_carto_mondiale,"layers", "layer_background" )
-    create_parametersFile_IMPORT(path_dap,"layers", "layer_DAP" )
-    create_parametersFile_IMPORT(path_style,"style", "" )
+    create_parametersFile_IMPORT(path_carto_mondiale,"layers","layer_background" )
+    create_parametersFile_IMPORT(path_dap,"layers","layer_DAP" )
+    create_parametersFile_IMPORT(path_style,"style", "styles" )
     create_parametersFile_IMPORT(path_construction,"layers", "layer" )
     
     #creation d'un nouveau fichier parametre
-    tree.write(r"C:\Users\segau\OneDrive\Documents\Stage\fichiers_param\fichier_param.xml")
+    tree.write("fichier_param2.xml")
 
     
 
