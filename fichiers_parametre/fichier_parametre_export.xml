@@ -10,8 +10,8 @@
 			<map>
 				<layer name="DC_CHANTIER"/>
 				<layer name="PERF_CHANTIER"/>
-				<layer name="EMPRISE"/>
-				<layer name="ZONES_ARC"/>
+				<layer name="EMPRISE_PU"/>
+				<layer name="ZONES_ARC_PU"/>
 				<scale></scale>
 				<size></size>
 			</map>
@@ -26,7 +26,7 @@
 			<title>Emprise du chantier</title>
 			<map>
 				<layer name="EMPRISE_EF"/>
-				<layer name="EMPRISE"/>
+				<layer name="EMPRISE_PC"/>
 				<layer name="ZONES_ARC"/>
 				<scale></scale>
 				<size></size>
@@ -39,7 +39,7 @@
 			</legende>
 		</image>
 		<image>
-			<title></title>
+			<title>Images sources pour le chantier</title>
 			<map>
 				<layer name="Pleiades 1A"/>
 				<layer name="Spot 7"/>
@@ -47,12 +47,12 @@
 				<layer name="Spot 6"/>
 				<layer name="PROGRAMMATIONS_RESIDUELLES"/>
 				<layer name="DC_REPRIS"/>
-				<layer name="EMPRISE"/>
+				<layer name="EMPRISE_NOM"/>
 				<scale></scale>
 				<size></size>
 			</map>
 			<legende exist="yes">
-				<title>Images sources pour le chantier</title>
+				<title></title>
 				<font></font>
 				<x></x>
 				<y></y>
@@ -62,7 +62,7 @@
 			<title>Incidence moyenne</title>
 			<map>
 				<layer name="INCIDENCE_MOY"/>
-				<layer name="EMPRISE"/>
+				<layer name="EMPRISE_SANSNOM"/>
 				<scale></scale>
 				<size></size>
 			</map>
@@ -78,7 +78,7 @@
 			<map>
 				<layer name="INCIDENCE_MOY"/>
 				<layer name="INCIDENCE_MAX"/>
-				<layer name="EMPRISE"/>
+				<layer name="EMPRISE_SANSNOM"/>
 				<scale></scale>
 				<size></size>
 			</map>
@@ -94,7 +94,7 @@
 			<map>
 				<layer name="INCIDENCE"/>
 				<layer name="URBAIN"/>
-				<layer name="EMPRISE"/>
+				<layer name="EMPRISE_SANSNOM"/>
 				<layer name="URBAIN_DENSE"/>
 				<scale></scale>
 				<size></size>
@@ -111,7 +111,7 @@
 			<map>
 				<layer name="INCIDENCE_ANGLE_15"/>
 				<layer name="ZONES_MONTAGNES"/>
-				<layer name="EMPRISE"/>
+				<layer name="EMPRISE_SANSNOM"/>
 				<scale></scale>
 				<size></size>
 			</map>

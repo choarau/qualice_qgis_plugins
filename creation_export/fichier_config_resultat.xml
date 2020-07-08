@@ -1,7 +1,7 @@
 <project_creation>
 	<project_properties>
 		<name>MARA_OR3</name>
-		<path_project>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\QGIS\MARA_OR3.qgs</path_project>
+		<path_project>D:/DONNEES_STAGE/MARA_OR3\3_QUALIF_CALIX\QGIS\MARA_OR3.qgs</path_project>
 		<zoom>...</zoom>
 		<background_color>
             <red>166</red>
@@ -13,17 +13,17 @@
 			<id_certified>EPSG:4326</id_certified>
 		</scr>
 		<construction>
-			<path_construction>D:\DONNEES_STAGE\MARA_OR3</path_construction>
+			<path_construction>D:/DONNEES_STAGE/MARA_OR3</path_construction>
 		</construction>
 		<other_dir>
-			<style_dir>D:\DONNEES_STAGE\Style_QGIS_organise</style_dir>
-			<worldmap_dir>D:\DONNEES_STAGE\SHP_Monde</worldmap_dir>
-			<dap_dir>D:\DONNEES_STAGE\DAP_MARA_OR3</dap_dir>
+			<style_dir>D:/DONNEES_STAGE/Style_QGIS_organise</style_dir>
+			<worldmap_dir>D:/DONNEES_STAGE/SHP_Monde</worldmap_dir>
+			<dap_dir>D:/DONNEES_STAGE/DAP_MARA_OR3</dap_dir>
 		</other_dir>
 		<source_satellite_image>PHR</source_satellite_image>
 	</project_properties>
 	<project_structure>
-		<layer_background layer_name="CARTO_MONDIALE" style_name=""/>
+		
 		<layer_group name="PU_C" value="PU du chantier">
 			<layer layer_name="DC" style_name="Style_DC_MARA">
 				<name>DC_CHANTIER</name>
@@ -31,23 +31,10 @@
 			<layer layer_name="PERF_V1" style_name="Style_Perf">
 				<name>PERF_CHANTIER</name>
 			</layer>
-			<layer layer_name="EMP_V1" style_name="Style_Emprise_PU_Chantier">
-				<name>EMPRISE</name>
-			</layer>
-			<layer layer_name="Zones_ARC" style_name="Style_ARC_PU_Chantier">
-				<name>ZONES_ARC</name>
-			</layer>
+			
 		</layer_group>
 		<layer_group name="PC" value="Presentation du chantier">
-			<layer layer_name="EMP_EF" style_name="Style_EF15">
-				<name>EMPRISE_EF</name>
-			</layer>
-			<layer layer_name="EMP_V1" style_name="Style_Emprise_MARA_EF15">
-				<name>EMPRISE</name>
-			</layer>
-			<layer layer_name="Zones_ARC" style_name="">
-				<name>ZONES_ARC</name>
-			</layer>
+		
 			<layer layer_name="SG_Caracteristix" style_name="Style_PHR1A_SPOT7">
 				<name>Pleiades 1A</name>
 				
@@ -70,16 +57,11 @@
 			<layer layer_name="DC_REPRIS" style_name="Style_DC_Repris">
 				<name>DC_REPRIS</name>
 			</layer>
-			<layer layer_name="EMP_V1" style_name="Style_Emprise_Chantier_N">
-				<name>EMPRISE</name>
-			</layer>
+
 		</layer_group>
 		<layer_group name="CPP" value="Controle de la precision planimetrique">
 			<layer layer_name="SG_Caracteristix" style_name="Style_Incidence_sup_25">
 				<name>INCIDENCE_MOY</name>
-			</layer>
-			<layer layer_name="EMP_V1" style_name="Style_Emprise_Chantier_N_SansNom">
-				<name>EMPRISE</name>
 			</layer>
 			<layer layer_name="SG_Caracteristix" style_name="Style_Incidence_sup_25">
 				<name>INCIDENCE_MOY</name>
@@ -87,17 +69,11 @@
 			<layer layer_name="SG_Caracteristix" style_name="Style_Incidence_MAX_SPOT">
 				<name>INCIDENCE_MAX</name>
 			</layer>
-			<layer layer_name="EMP_V1" style_name="Style_Emprise_Chantier_N_SansNom">
-				<name>EMPRISE</name>
-			</layer>
 			<layer layer_name="SG_Caracteristix" style_name="Style_Incidence_sup_25">
 				<name>INCIDENCE</name>
 			</layer>
 			<layer layer_name="DCZU_V2_fusion" style_name="Style_Urbain_Dense">
 				<name>URBAIN</name>
-			</layer>
-			<layer layer_name="EMP_V1" style_name="Style_Emprise_Chantier_N_SansNom">
-				<name>EMPRISE</name>
 			</layer>
 			<layer layer_name="VILLES" style_name="Style_ville_urbain_dense">
 				<name>URBAIN_DENSE</name>
@@ -108,9 +84,7 @@
 			<layer layer_name="DCOS_V2_fusion" style_name="style_zone_montagnes">
 				<name>ZONES_MONTAGNES</name>
 			</layer>
-			<layer layer_name="EMP_V1" style_name="Style_Emprise_Chantier_N_SansNom">
-				<name>EMPRISE</name>
-			</layer>	
+			
 		</layer_group>			
 		<layer_group name="CC" value="Controle du Calage"> 	
 			<layer layer_name="SG_EquipementSpatio_APPUI" style_name="Alerte_Equip_Appui_Details">
@@ -150,8 +124,34 @@
 			<layer layer_name="Albatros" style_name="Style_Albatros">
 				<name>ALBATROS</name>
 			</layer>
+		</layer_group>
+		<layer_group name="EMPRISES" value="EMPRISES">
 			<layer layer_name="EMP_V1" style_name="Style_Emprise_DAP">
-				<name>EMPRISE</name>
+				<name>EMPRISE_DAP</name>
+			</layer>
+			<layer layer_name="EMP_V1" style_name="Style_Emprise_Chantier_N_SansNom">
+				<name>EMPRISE_CHANTIER_SSNOM</name>
+			</layer>	
+			<layer layer_name="EMP_V1" style_name="Style_Emprise_Chantier_N">
+				<name>EMPRISE_CHANTIER_NOM</name>
+			</layer>
+			<layer layer_name="Zones_ARC" style_name="">
+				<name>ZONES_ARC</name>
+			</layer>
+			<layer layer_name="EMP_EF" style_name="Style_EF15">
+				<name>EMPRISE_EF</name>
+			</layer>
+			<layer layer_name="EMP_V1" style_name="Style_Emprise_MARA_EF15">
+				<name>EMPRISE_CHANTIER_EF</name>
+			</layer>
+			<layer layer_name="EMP_V1" style_name="Style_Emprise_PU_Chantier">
+				<name>EMPRISE_PU_CHANTIER</name>
+			</layer>
+			<layer layer_name="Zones_ARC" style_name="Style_ARC_PU_Chantier">
+				<name>ZONES_ARC_PU_CHANTIER</name>
+			</layer>
+			<layer layer_name="CARTO_MONDIALE" style_name="Style_carto">
+				<name>CARTO_MONDIALE</name>
 			</layer>
 		</layer_group>
 	</project_structure>

@@ -47,16 +47,27 @@ def recuperation_path_style(style_name):
             if style.get("style_name")==style_name:
                 path = style.find('path').text
                 return path
-def source_img():
+def source_img(name):
     """Recupere le nom de la source des images"""
     layer = root[0].find('source_satellite_image')
     source_img = layer.text
-    return source_img
+    response = "yes"
+    if source_img != "PLEIADE/SPOT":
+        if name != source_img:
+            response = "no"
+    return response
         
 def loading_layers():
     """Chargement des couches et application des styles
     """
+    
+    layer_background = root[1].find('layer_background')
+    layer_name = layer_background.get('layer_name')
+        
+    path_layer =recuperation_path_import(layer_name)
+    print(layer_name, path_layer)
     for group in root[1].findall('layer_group'):
+       
         #creation du groupe
         if group.getchildren!= []:
             #si le groupe possede des sous-element
@@ -68,9 +79,9 @@ def loading_layers():
                 path_style = recuperation_path_style(style_name)
                 
                 name = layer.find('name').text
-        
+                
                 #creation et assignation du style à la couche, puis au groupe
-                print("Nom de la couche : ",name,"\nChemin acces de la couche : ",path_layer, "\nChemin acces du style : ",path_style, "\n\n")
+               # print("Nom de la couche : ",name,"\nChemin acces de la couche : ",path_layer, "\nChemin acces du style : ",path_style, "\n\n")
    
     
 if __name__=='__main__':
@@ -79,4 +90,3 @@ if __name__=='__main__':
     root = tree.getroot()
     #recuperation_path_style('Style_Perf')
     loading_layers()
-    source_img()

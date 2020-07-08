@@ -24,7 +24,7 @@
 		<source_satellite_image>?</source_satellite_image>
 	</project_properties>
 	<project_structure>
-		<layer_background layer_name="CARTO_MONDIALE"/>
+		<layer_background layer_name="CARTO_MONDIALE" style_name="Style_carto"/>
 		<layer_group name="PU_C" value="PU du chantier">
 			<layer layer_name="DC" style_name="Style_DC_MARA">
 				<name>DC_CHANTIER</name>
@@ -120,22 +120,22 @@
 			<layer layer_name="SG_EquipementSpatio_LIAISON" style_name="Alerte_Equip_Appui_Liaison">
 				<name>ALERTES_LIAISON</name>
 			</layer>
-			<layer layer_name="SG_EquipementSpatio" style_name="Style_PHR_Precalage">
+			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_PHR_Precalage">
 				<name>PRECALAGE_PHR</name>
 			</layer>
-			<layer layer_name="SG_EquipementSpatio" style_name="Style_SPOT_Precalage">
+			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_SPOT_Precalage">
 				<name>PRECALAGE_SPOT</name>
 			</layer>
-			<layer layer_name="SG_EquipementSpatio" style_name="Style_SPATIO_QUALIF_geo_DXY_APP">
+			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_SPATIO_QUALIF_geo_DXY_APP">
 				<name>BIAIS_APPUI</name>
 			</layer>
-			<layer layer_name="SG_EquipementSpatio" style_name="Style_SPATIO_QUALIF_geo_ECTXY_APP">
+			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_SPATIO_QUALIF_geo_ECTXY_APP">
 				<name>ECARTTYPE_APPUI</name>
 			</layer>
-			<layer layer_name="SG_EquipementSpatio" style_name="Style_SPATIO_QUALIF_geo_DXY_LNK">
+			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_SPATIO_QUALIF_geo_DXY_LNK">
 				<name>BIAIS_LIAISON</name>
 			</layer>
-			<layer layer_name="SG_EquipementSpatio" style_name="Style_SPATIO_QUALIF_geo_ECTXY_LNK">
+			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_SPATIO_QUALIF_geo_ECTXY_LNK">
 				<name>ECARTTYPE_LIAISON</name>
 			</layer>
 		</layer_group>
@@ -207,23 +207,26 @@
 			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_Caracteristix" layer_name="" filter="shp" id="15">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio." layer_name="" filter="shp" id="16">
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SPATIO_QUALIF_geo" layer_name="" filter="shp" id="16">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_APPUI" layer_name="" filter="shp" id="17">
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio." layer_name="" filter="shp" id="17">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_LIAISON" layer_name="" filter="shp" id="18">
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_APPUI" layer_name="" filter="shp" id="18">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="STAT_AMER" layer_name="" filter="shp" id="19">
+			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_LIAISON" layer_name="" filter="shp" id="19">
+				
+			</layer>
+			<layer path="3_QUALIF_CALIX\CALIX" contain="STAT_AMER" layer_name="" filter="shp" id="20">
 				
 			</layer>
 			
 			
-			<layer_DAP path="" contain="Empilements" layer_name="" filter="shp" id="20">
+			<layer_DAP path="" contain="Empilements" layer_name="" filter="shp" id="21">
 			</layer_DAP>
-			<layer_DAP path="" contain="Albatros" layer_name="" filter="shp" id="21">
+			<layer_DAP path="" contain="Albatros" layer_name="" filter="shp" id="22">
 			</layer_DAP>
 		</layers_import>
 		<styles_import>

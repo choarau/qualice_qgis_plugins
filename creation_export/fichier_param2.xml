@@ -1,7 +1,7 @@
 <project_creation>
 	<project_properties>
-		<name>MARA_OR3</name>
-		<path_project>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\QGIS\MARA_OR3.qgs</path_project>
+		<name>MARA_OR4</name>
+		<path_project>D:/DONNEES_STAGE/MARA_OR4\3_QUALIF_CALIX\QGIS\MARA_OR4.qgs</path_project>
 		<zoom>...</zoom>
 		<background_color>
             <red>166</red>
@@ -13,17 +13,17 @@
 			<id_certified>EPSG:4326</id_certified>
 		</scr>
 		<construction>
-			<path_construction>D:\DONNEES_STAGE\MARA_OR3</path_construction>
+			<path_construction>D:/DONNEES_STAGE/MARA_OR4</path_construction>
 		</construction>
 		<other_dir>
-			<style_dir>D:\DONNEES_STAGE\Style_QGIS_organise</style_dir>
-			<worldmap_dir>D:\DONNEES_STAGE\SHP_Monde</worldmap_dir>
-			<dap_dir>D:\DONNEES_STAGE\DAP_MARA_OR3</dap_dir>
+			<style_dir>D:/DONNEES_STAGE/Style_QGIS_organise</style_dir>
+			<worldmap_dir>D:/DONNEES_STAGE/SHP_Monde</worldmap_dir>
+			<dap_dir>D:/DONNEES_STAGE/DAP_MARA_OR4</dap_dir>
 		</other_dir>
 		<source_satellite_image>PHR</source_satellite_image>
 	</project_properties>
 	<project_structure>
-		<layer_background layer_name="CARTO_MONDIALE" style_name=""/>
+		<layer_background layer_name="CARTO_MONDIALE" style_name="Style_carto"/>
 		<layer_group name="PU_C" value="PU du chantier">
 			<layer layer_name="DC" style_name="Style_DC_MARA">
 				<name>DC_CHANTIER</name>
@@ -166,64 +166,67 @@
 			<path>D:\DONNEES_STAGE\SHP_Monde\Zones_ARC\Zones_ARC.shp</path></layer_background>
 		
 			<layer path="1_PREPA\PERF" contain="PERF_V1" layer_name="PERF_V1" filter="shp" id="2">
-			<path>D:\DONNEES_STAGE\MARA_OR3\1_PREPA\PERF\GS_ETD_EC15_2_OR3_PERF_V1.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\PERF\GS_ETD_EC15_2_OR4_PERF_V1.shp</path></layer>
 			<layer path="1_PREPA\DC" contain="DC" layer_name="DC" filter="shp" id="3">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\1_PREPA\DC\DC_MARA.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\DC\DC_MARA_OR4.shp</path></layer>
+			<layer path="1_PREPA\DC\REPRISES" contain="DC_REPRIS" layer_name="DC_REPRIS" filter="shp" id="4">
+				
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\DC\REPRISES\DC_REPRIS.shp</path></layer>
 			<layer path="1_PREPA\EMPRISE" contain="EMP_V1" layer_name="EMP_V1" filter="shp" id="5">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\1_PREPA\EMPRISE\GS_20190214_MARA_OR3_EMP_V1.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\EMPRISE\GS_20190312_MARA_OR4_EMP_V1.shp</path></layer>
 			<layer path="1_PREPA\EF" contain="EMP_EF" layer_name="EMP_EF" filter="shp" id="6">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\1_PREPA\EF\EMP_EF15.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\EF\EMP_EF15.shp</path></layer>
 			<layer path="1_PREPA\SPROG" contain="SPROG_V1" layer_name="SPROG_V1" filter="shp" id="7">
 			
-			<path>D:\DONNEES_STAGE\MARA_OR3\1_PREPA\SPROG\GS_ETD_EC15_2_OR3_SPROG_V1.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\SPROG\GS_ETD_EC15_2_OR4_SPROG_V1.shp</path></layer>
 			<layer path="1_PREPA\VILLES" contain="VILLES" layer_name="VILLES" filter="shp" id="8">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\1_PREPA\VILLES\VILLES.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\VILLES\VILLES.shp</path></layer>
 			<layer path="1_PREPA\CONTRAINTES\DCZU" contain="DCZU_V2_fusion" layer_name="DCZU_V2_fusion" filter="shp" id="9">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\1_PREPA\CONTRAINTES\DCZU\UC15_2_MARA_OR3_DCZU_V2_fusion.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\CONTRAINTES\DCZU\UC15_2_MARA_OR4_DCZU_V2_fusion.shp</path></layer>
 			<layer path="1_PREPA\CONTRAINTES\DCOS" contain="DCOS_V2_fusion" layer_name="DCOS_V2_fusion" filter="shp" id="10">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\1_PREPA\CONTRAINTES\DCOS\UC15_2_MARA_OR3_DCOS_V2_fusion.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\1_PREPA\CONTRAINTES\DCOS\UC15_2_MARA_OR4_DCOS_V2_fusion.shp</path></layer>
 		
 			<layer path="3_QUALIF_CALIX\CALIX" contain="AMERS_actifs_geo" layer_name="AMERS_actifs_geo" filter="shp" id="11">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\AMERS_actifs_geo.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\AMERS_actifs_geo.shp</path></layer>
 			<layer path="3_QUALIF_CALIX\CALIX" contain="AMERS_inactifs_geo" layer_name="AMERS_inactifs_geo" filter="shp" id="12">
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\AMERS_inactifs_geo.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\AMERS_inactifs_geo.shp</path></layer>
 			<layer path="3_QUALIF_CALIX\CALIX" contain="LIAISONS_actifs_geo" layer_name="LIAISONS_actifs_geo" filter="shp" id="13">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\LIAISONS_actifs_geo.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\LIAISONS_actifs_geo.shp</path></layer>
 			<layer path="3_QUALIF_CALIX\CALIX" contain="LIAISONS_inactifs_geo" layer_name="LIAISONS_inactifs_geo" filter="shp" id="14">
 			
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\LIAISONS_inactifs_geo.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\LIAISONS_inactifs_geo.shp</path></layer>
 			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_Caracteristix" layer_name="SG_Caracteristix" filter="shp" id="15">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\SG_Caracteristix.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\SG_Caracteristix.shp</path></layer>
 			<layer path="3_QUALIF_CALIX\CALIX" contain="SPATIO_QUALIF_geo" layer_name="SPATIO_QUALIF_geo" filter="shp" id="16">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\SPATIO_QUALIF_geo.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\SPATIO_QUALIF_geo.shp</path></layer>
 			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio." layer_name="SG_EquipementSpatio" filter="shp" id="17">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\SG_EquipementSpatio.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\SG_EquipementSpatio.shp</path></layer>
 			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_APPUI" layer_name="SG_EquipementSpatio_APPUI" filter="shp" id="18">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\SG_EquipementSpatio_APPUI.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\SG_EquipementSpatio_APPUI.shp</path></layer>
 			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_LIAISON" layer_name="SG_EquipementSpatio_LIAISON" filter="shp" id="19">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\SG_EquipementSpatio_LIAISON.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\SG_EquipementSpatio_LIAISON.shp</path></layer>
 			<layer path="3_QUALIF_CALIX\CALIX" contain="STAT_AMER" layer_name="STAT_AMER" filter="shp" id="20">
 				
-			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\STAT_AMER_190305_MARA_OR3_geo.shp</path></layer>
+			<path>D:\DONNEES_STAGE\MARA_OR4\3_QUALIF_CALIX\CALIX\STAT_AMER_190329_MARA_OR4_geo.shp</path></layer>
 			
 			
 			<layer_DAP path="" contain="Empilements" layer_name="Empilements" filter="shp" id="21">
-			<path>D:\DONNEES_STAGE\DAP_MARA_OR3\MARA_OR3_V2_Empilements_CORREL_synthese.shp</path></layer_DAP>
+			<path>D:\DONNEES_STAGE\DAP_MARA_OR4\MARA_OR4_Empilements_CORREL_synthese.shp</path></layer_DAP>
 			<layer_DAP path="" contain="Albatros" layer_name="Albatros" filter="shp" id="22">
-			<path>D:\DONNEES_STAGE\DAP_MARA_OR3\MARA_OR3_V2_Albatros_CORREL_synthese.shp</path></layer_DAP>
+			<path>D:\DONNEES_STAGE\DAP_MARA_OR4\MARA_OR4_Albatros_CORREL_synthese.shp</path></layer_DAP>
 		</layers_import>
 		<styles_import>
 			<styles path="ALERTES"><style style_name="Alerte_Equip_Appui" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Appui.qml</path></style><style style_name="Alerte_Equip_Appui_Details" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Appui_Details.qml</path></style><style style_name="Alerte_Equip_Appui_Liaison" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Appui_Liaison.qml</path></style><style style_name="Alerte_Equip_Liaison" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Liaison.qml</path></style><style style_name="Style_STAT_AMER" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Style_STAT_AMER.qml</path></style></styles>			
