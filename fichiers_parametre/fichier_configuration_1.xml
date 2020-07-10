@@ -37,19 +37,19 @@
 		<layer_group name="PC" value="Presentation du chantier">
 		
 			<layer layer_name="SG_Caracteristix" style_name="Style_PHR1A_SPOT7">
-				<name>Pleiades 1A</name>
+				<name>PLEIADE 1A</name>
 				
 			</layer>
 			<layer layer_name="SG_Caracteristix" style_name="Style_PHR1A_SPOT7">
-				<name>Spot 7</name>
+				<name>SPOT 7</name>
 				
 			</layer>
 			<layer layer_name="SG_Caracteristix" style_name="Style_PHR1B_SPOT6">
-				<name>Pleiades 1B</name>
+				<name>PLEIADE 1B</name>
 				
 			</layer>
 			<layer layer_name="SG_Caracteristix" style_name="Style_PHR1B_SPOT6">
-				<name>Spot 6</name>
+				<name>SPOT 6</name>
 				
 			</layer>
 			<layer layer_name="SPROG_V1" style_name="Style_Progr">
@@ -95,7 +95,7 @@
 				<name>ALERTES_LIAISON</name>
 			</layer>
 			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_PHR_Precalage">
-				<name>PRECALAGE_PHR</name>
+				<name>PRECALAGE_PLEIADE</name>
 			</layer>
 			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_SPOT_Precalage">
 				<name>PRECALAGE_SPOT</name>

@@ -1,7 +1,7 @@
 <project_creation>
 	<project_properties>
-		<name>MARA_OR3</name>
-		<path_project>D:/DONNEES_STAGE/MARA_OR3\3_QUALIF_CALIX\QGIS\MARA_OR3.qgs</path_project>
+		<name>test.qgs</name>
+		<path_project>D:\DONNEES_STAGE\Test_projet\test.qgs</path_project>
 		<zoom>...</zoom>
 		<background_color>
             <red>166</red>
@@ -18,9 +18,9 @@
 		<other_dir>
 			<style_dir>D:/DONNEES_STAGE/Style_QGIS_organise</style_dir>
 			<worldmap_dir>D:/DONNEES_STAGE/SHP_Monde</worldmap_dir>
-			<dap_dir>D:/DONNEES_STAGE/DAP_MARA_OR3</dap_dir>
+			<dap_dir>?</dap_dir>
 		</other_dir>
-		<source_satellite_image>PHR</source_satellite_image>
+		<source_satellite_image>SPOT</source_satellite_image>
 	</project_properties>
 	<project_structure>
 		
@@ -36,19 +36,19 @@
 		<layer_group name="PC" value="Presentation du chantier">
 		
 			<layer layer_name="SG_Caracteristix" style_name="Style_PHR1A_SPOT7">
-				<name>Pleiades 1A</name>
+				<name>PLEIADE 1A</name>
 				
 			</layer>
 			<layer layer_name="SG_Caracteristix" style_name="Style_PHR1A_SPOT7">
-				<name>Spot 7</name>
+				<name>SPOT 7</name>
 				
 			</layer>
 			<layer layer_name="SG_Caracteristix" style_name="Style_PHR1B_SPOT6">
-				<name>Pleiades 1B</name>
+				<name>PLEIADE 1B</name>
 				
 			</layer>
 			<layer layer_name="SG_Caracteristix" style_name="Style_PHR1B_SPOT6">
-				<name>Spot 6</name>
+				<name>SPOT 6</name>
 				
 			</layer>
 			<layer layer_name="SPROG_V1" style_name="Style_Progr">
@@ -94,7 +94,7 @@
 				<name>ALERTES_LIAISON</name>
 			</layer>
 			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_PHR_Precalage">
-				<name>PRECALAGE_PHR</name>
+				<name>PRECALAGE_PLEIADE</name>
 			</layer>
 			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_SPOT_Precalage">
 				<name>PRECALAGE_SPOT</name>
@@ -220,10 +220,10 @@
 			<path>D:\DONNEES_STAGE\MARA_OR3\3_QUALIF_CALIX\CALIX\STAT_AMER_190305_MARA_OR3_geo.shp</path></layer>
 			
 			
-			<layer_DAP path="" contain="Empilements" layer_name="Empilements" filter="shp" id="21">
-			<path>D:\DONNEES_STAGE\DAP_MARA_OR3\MARA_OR3_V2_Empilements_CORREL_synthese.shp</path></layer_DAP>
-			<layer_DAP path="" contain="Albatros" layer_name="Albatros" filter="shp" id="22">
-			<path>D:\DONNEES_STAGE\DAP_MARA_OR3\MARA_OR3_V2_Albatros_CORREL_synthese.shp</path></layer_DAP>
+			<layer_DAP path="" contain="Empilements" layer_name="" filter="shp" id="21">
+			</layer_DAP>
+			<layer_DAP path="" contain="Albatros" layer_name="" filter="shp" id="22">
+			</layer_DAP>
 		</layers_import>
 		<styles_import>
 			<styles path="ALERTES"><style style_name="Alerte_Equip_Appui" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Appui.qml</path></style><style style_name="Alerte_Equip_Appui_Details" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Appui_Details.qml</path></style><style style_name="Alerte_Equip_Appui_Liaison" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Appui_Liaison.qml</path></style><style style_name="Alerte_Equip_Liaison" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Alerte_Equip_Liaison.qml</path></style><style style_name="Style_STAT_AMER" id=""><path>D:\DONNEES_STAGE\Style_QGIS_organise\ALERTES\Style_STAT_AMER.qml</path></style></styles>			

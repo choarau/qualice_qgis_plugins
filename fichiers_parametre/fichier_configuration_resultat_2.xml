@@ -1,0 +1,268 @@
+<export_images>
+	<properties>
+		<name_project>test.qgs</name_project>
+		<path_project>D:\DONNEES_STAGE\Test_projet\test.qgs</path_project>
+		<path>D:\DONNEES_STAGE\Test_projet\Test_illustrations</path>
+	</properties>
+	<export>
+		<image>
+			<title exist="no">PU du chantier</title>
+			<map exist="yes">
+				<layer name="EMPRISE_PU_CHANTIER"/>
+				<layer name="ZONES_ARC_PU_CHANTIER"/>
+				<layer name="DC_CHANTIER"/>
+				<layer name="PERF_CHANTIER"/>
+				<layer name="CARTO_MONDIALE"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Emprise du chantier</title>
+			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_EF"/>
+				<layer name="EMPRISE_EF"/>
+				<layer name="ZONES_ARC"/>
+				<layer name="CARTO_MONDIALE"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Images sources pour le chantier</title>
+			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_NOM"/>
+				<layer name="PROGRAMMATIONS_RESIDUELLES"/>
+				<layer name="DC_REPRIS"/>
+				<layer name="Pleiades 1A"/>
+				<layer name="Spot 7"/>
+				<layer name="Pleiades 1B"/>
+				<layer name="Spot 6"/>
+				<layer name="CARTO_MONDIALE"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Incidence moyenne</title>
+			<map exist="yes">
+				<layer name="INCIDENCE_MOY"/>
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Incidence maximale</title>
+			<map exist="yes">
+				<layer name="INCIDENCE_MOY"/>
+				<layer name="INCIDENCE_MAX"/>
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exists="yes" exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Angles d'incidence sur les zones DCZU</title>
+			<map exist="yes">
+				<layer name="URBAIN"/>
+				<layer name="URBAIN_DENSE"/>
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<layer name="INCIDENCE"/>
+				<layer name="CARTO_MONDIALE"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Respect des contraintes d'angles sur zones de relief</title>
+			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<layer name="INCIDENCE_ANGLE_15"/>
+				<layer name="ZONES_MONTAGNES"/>
+				<layer name="CARTO_MONDIALE"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Alertes sur l'&#233;quipement en appui</title>
+			<map exist="yes">
+				<layer name="ALERTES_APPUI"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Alertes sur l'&#233;quipement en liaison</title>
+			<map exist="yes">
+				<layer name="ALERTES_LIAISON"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Alertes sur les param&#232;tres de recalage</title>
+			<map exist="yes">
+				<layer name="PRECALAGE_PHR"/>
+				<layer name="PRECALAGE_SPOT"/>
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<layer name="CARTO_MONDIALE"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Biais XY sur les points d'appui</title>
+			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<layer name="BIAIS_APPUI"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Ecarts-types XY sur les points d'appui</title>
+			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<layer name="ECARTTYPE_APPUI"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Biais XY sur les points de liaison</title>
+			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<layer name="BIAIS_LIAISON"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Ecarts-types XY sur les points de liaison</title>
+			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<layer name="ECARTTYPE_LIAISON"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Localisation des alertes du contr&#244;le sur la BD_AMER </title>
+			<map exist="yes">
+				<layer name="STAT_AMER"/>
+				<layer name="CARTO_MONDIALE"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+		<image>
+			<title exist="no">Mesures g&#233;om&#233;triques sur donn&#233;es d&#8217;appu</title>
+			<map exist="yes">
+				<layer name="EMPILEMENTS"/>
+				<layer name="ALBATROS"/>
+				<layer name="EMPRISE_DAP"/>
+				<layer name="CARTO_MONDIALE"/>
+				<scale/>
+				<size/>
+			</map>
+			<legende exist="yes">
+				<title/>
+				<font/>
+				<x/>
+				<y/>
+			</legende>
+		</image>
+	</export>
+</export_images>

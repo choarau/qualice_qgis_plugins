@@ -84,6 +84,8 @@ class CreationEtExport:
         self.actions = []
         self.menu = self.tr(u'&Creation et export')
         
+      
+        
         
 
         # Check if plugin was started the first time in current QGIS session
@@ -202,9 +204,10 @@ class CreationEtExport:
                 action)
             self.iface.removeToolBarIcon(action)
 
+    ### SELECTION DES DONNEES EN ENTREES ###
     def select_output_project(self):
         filename, _filter = QFileDialog.getSaveFileName(
-            self.dlg, " ","*.qgs")
+            self.dlg, " ","",'(*.qgs)')
         self.dlg.lineEdit_6.setText(filename)
     
     def select_input_construction(self):
@@ -222,16 +225,18 @@ class CreationEtExport:
     def select_input_DAP(self):
         directory_name = QFileDialog.getExistingDirectory(self.dlg)
         self.dlg.lineEdit_2.setText(directory_name)
+        
+  
     
-    # def select_checkBox_pleiade(self):
-    #     if QCheckBox.isTristate()==True:
-    #         return "pleiade"         
+    ### REMPLISSAGE DU FICHIER_CONFIGURATION_1 ###
+        
+    ###IMPORT###
     def create_parametersFile_IMPORT(self,tree, root,main_path, type_import,tag ):
        """ Remplis les differentes sous parties de la balise <project_import>
            
            Entree :
                main_path : type str
-                   correspond au chemin du dossier necessaire a la recuperation du chemin de la couche
+                   correspond au chemin du dossier necessaire a la recovery du chemin de la couche
                type_import : type str
                    correspond au type d'import : layer ou style
                tag : type str
@@ -246,7 +251,7 @@ class CreationEtExport:
                relative_path = noeud.get('path')
                #construction du chemin absolue pour acceder au dossier des couches
                path_1 = os.path.join(main_path,relative_path)
-               #recuperation de la liste des fichiers
+               #recovery de la liste des fichiers
                list_files = os.listdir(path_1)
                layer_exist = ""
                #parcours les fichiers
@@ -283,8 +288,9 @@ class CreationEtExport:
                   path_2 = etree.SubElement(style, "path")
                   p = os.path.join(path_1,file)
                   path_2.text =  os.path.normpath(p) 
-                
-    def create_parametersFile_PARAMETERS(self,tree, root, path_carto_mondiale,path_dap, path_style, path_construction, source_satellite_image):
+            
+    ### PARAMETRES ###        
+    def create_parametersFile_PARAMETERS(self,tree, root, path_carto_mondiale,path_dap, path_style, path_construction,path_project, source_satellite_image):
         """ Remplis les differentes sous parties de la balise <project_properties>
             
             Entree :
@@ -301,13 +307,10 @@ class CreationEtExport:
         
         """
         tree_path = "/project_creation/project_properties"
-        name_projet = ""
         for noeud in tree.xpath(tree_path+"/name"):
-            noeud.text = os.path.basename(path_construction)
-            name_projet += noeud.text + ".qgs"
+            noeud.text = os.path.basename(path_project)
         for noeud in tree.xpath(tree_path+"/path_project"):
-            path_proj_relative= os.path.join("3_QUALIF_CALIX\QGIS", name_projet)
-            noeud.text = os.path.join(path_construction,path_proj_relative)
+            noeud.text = os.path.normpath(path_project)
         for noeud in tree.xpath(tree_path+"/construction/path_construction"):
             noeud.text = path_construction
         if path_style!=False:
@@ -321,8 +324,15 @@ class CreationEtExport:
                 noeud.text = path_dap
         for noeud in tree.xpath(tree_path+"/source_satellite_image"):
             noeud.text = source_satellite_image
+    
+    ### RECUPERATION DES DONNEES DU FICHIER CONFIGURATION_RESULTAT_1 ###
             
-    def recuperation_path_import(self,layer_name, root):
+    def recovery_filename_project(self, root):
+        """Recupere le chemin d'acces du projet QGIS """
+        filename_project = root[0].find("path_project").text
+        return filename_project
+    
+    def recovery_path_import(self,layer_name, root):
         """Recupere le chemin d'une couche grace à son nom
         
         Entree : 
@@ -338,7 +348,7 @@ class CreationEtExport:
                 path = layer.find('path').text
                 return path
 
-    def recuperation_path_style(self,style_name, root):
+    def recovery_path_style(self,style_name, root):
         """Recupere le chemin d'un style grace à son nom
         
         Entree : 
@@ -354,19 +364,52 @@ class CreationEtExport:
                 if style.get("style_name")==style_name:
                     path = style.find('path').text
                     return path
-                
-    def source_img(self, name):
-        """Recupere le nom de la source des images"""
-        layer = root[0].find('source_satellite_image')
-        source_img = layer.text
-        response = "yes"
-        if source_img != "PLEIADE/SPOT":
-            if name != source_img:
-                response = "no"
-        return response
-    
-
+     
         
+    def recovery_source_img_checkbox(self):
+        """Verifie si la checkbox Pleiade a ete coche"""
+        if self.dlg.checkBox.isChecked()==True:
+            return self.dlg.checkBox.text()
+        else: 
+            return False
+        
+    def recovery_source_img_checkbox2(self):
+        """Verifie si la checkbox Spot a ete coche"""
+        if self.dlg.checkBox_2.isChecked()==True:
+            return self.dlg.checkBox_2.text()
+        else: 
+            return False
+        
+    def recovery_source_img(self):
+        """Verifie quelle source satellite image a ete choisie par l'utilisateur"""
+        checkbox_1 = self.recovery_source_img_checkbox()
+        checkbox_2 = self.recovery_source_img_checkbox2()
+        if checkbox_1 != False and checkbox_2 != False: 
+            self.dlg.textBrowser_3.append( "Sources images satellites : PLEIADE ET SPOT")
+            return "PLEIADE/SPOT"
+        elif checkbox_1 == False and checkbox_2 != False:
+            self.dlg.textBrowser_3.append( "Source images satellites : SPOT")
+            return "SPOT"
+        elif checkbox_1 != False and checkbox_2 == False:
+            self.dlg.textBrowser_3.append( "Source images satellites : PLEIADE")
+            return "PLEIADE"
+        else:
+            iface.messageBar().pushMessage("Erreur","Vous n'avez cocher aucune source satellite", level=Qgis.Warning)
+            self.dlg.textBrowser_3.append( "Aucune sources satellite n'a été choisi")
+            return "PLEIADE/SPOT"
+            
+
+    def pleiade_spot(self,root,group, layer,name, layer_name):
+        """Recupere le nom de la source des images"""
+        layer_source = root[0].find('source_satellite_image')
+        source_img = layer_source.text
+        if source_img in name or source_img=="PLEIADE/SPOT":
+            return self.recovery_path_import(layer_name, root)
+        else:
+            layer.getparent().remove(layer)
+           
+            return ""
+            
     def loading_layers(self, tree, root, project):
         """Chargement des couches et application des styles
         """
@@ -379,21 +422,30 @@ class CreationEtExport:
                 #si le groupe possede des sous-element
                 
                 for layer in group.getchildren():
-                    #recuperation pour toutes les couches 
+                    #recovery pour toutes les couches 
                     layer_name = layer.get('layer_name')
                     style_name = layer.get('style_name')
-                    path_layer = self.recuperation_path_import(layer_name, root)
-                    path_style = self.recuperation_path_style(style_name, root)
+                    path_layer = self.recovery_path_import(layer_name, root)
+                    path_style = self.recovery_path_style(style_name, root)
+                    
                     if not path_layer:
-                        layer.getparent().remove(layer)
+                        pass
                     else:
                         if os.path.exists(path_layer):
                             name = layer.find('name').text
-                            layer = QgsVectorLayer(path_layer,name) 
-                            layer.loadNamedStyle(path_style)
-                            project.addMapLayer(layer, False)
-                            groupe.addLayer(layer)   
-                            iface.mapCanvas().refresh()
+                            if "PLEIADE" in name or "SPOT" in name:
+                                #self.pleiade_spot(root, group, layer ,name)
+                                path_layer = self.pleiade_spot(root, group, layer ,name, layer_name)
+                            if path_layer=="":
+                                pass
+                            else:
+                                layer = QgsVectorLayer(path_layer,name) 
+                                layer.loadNamedStyle(path_style)
+                                project.addMapLayer(layer, False)
+                                groupe.addLayer(layer)   
+                                iface.mapCanvas().refresh()
+                                self.dlg.textBrowser_3.append("La couche "+name+" est chargée")
+                            
         
         
         
@@ -435,70 +487,226 @@ class CreationEtExport:
                 self.dlg.textBrowser_3.append("Le chemin d'accès "+data[0]+" est valide")
                 return True
             else:
-                iface.messageBar().pushMessage("Erreur", "Le chemin d'accès du dossier "+os.path.basename(data[1])+" n'existe pas", level=Qgis.Warning)
-                self.dlg.textBrowser_3.append( "Le chemin d'accès du dossierr "+os.path.basename(data[1])+" n'existe pas")
+                
+                self.dlg.textBrowser_3.append( "Le chemin d'accès du dossier "+os.path.basename(data[1])+" n'existe pas")
                 return False
             
     def run_1(self):
-        # REMPLI
+        ### REMPLISSAGE DU FICHIER_CONFIGURATION_1 ###
         #initialisation de l'arbre du fichier .xml
-        #camino = os.path.abspath(.fichier_parametre_creation_projet_2.xml)
-        #tree = etree.parse(r'C:\Users\segau\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\creation_export\fichier_parametre_creation_projet_2.xml')
         tree = etree.parse(os.path.join(self.plugin_dir,"fichier_configuration_1.xml"))
         root = tree.getroot()
     
         #parametres qui seront fournis par l'interface
-        
+        path_project = ["fichier du projet", os.path.dirname(self.dlg.lineEdit_6.text())]
         path_carto_mondiale = ["SHP_Monde",self.dlg.lineEdit_5.text()]
         path_dap = ["données d'appui du chantier",self.dlg.lineEdit_2.text()]
         path_style =["Styles_QGIS",self.dlg.lineEdit_4.text()]
         path_construction = self.dlg.lineEdit.text()
+        
+        #definition des couleurs des messages
+        green_color = QColor(0,255,0,255)
+        red_color = QColor(255,0,0,255)
+        black_color = QColor(0,0,0,255)
+        
+        #Verifications des entrees de l'utilisateur
+        
+        self.dlg.textBrowser_3.setTextColor(green_color)
+        self.dlg.textBrowser_3.append( "\nCREATION D'UN PROJET")
+        self.dlg.textBrowser_3.setTextColor(red_color)
+        self.dlg.textBrowser_3.append( "Vérifications des données entrées :")
+        self.dlg.textBrowser_3.setTextColor(black_color)
         self.data_verification_dir_construction(path_construction)
+        source_satellite_image = self.recovery_source_img()
+
+       
         if self.data_verification_dir(path_carto_mondiale)==True:
+            #Chemin valide = completion de l'import valide
             self.create_parametersFile_IMPORT(tree, root, path_carto_mondiale[1],"layers","layer_background" )
         else:
             path_carto_mondiale[1]=False
         if self.data_verification_dir(path_dap)==True:
+            #Chemin valide = completion de l'import valide
             self.create_parametersFile_IMPORT(tree, root, path_dap[1],"layers","layer_DAP" )
         else:
             path_dap[1]=False
         if self.data_verification_dir(path_style)==True:
+            #Chemin valide = completion de l'import valide
             self.create_parametersFile_IMPORT(tree, root, path_style[1],"style", "styles" )
         elif self.data_verification_dir(path_style)==False:
             path_style[1]=False
-        
+        if self.data_verification_dir(path_project)==True:
+            #Chemin valide = completion de l'import valide
+            path_project = self.dlg.lineEdit_6.text()
+        elif self.data_verification_dir(path_project)==False:
+            #Sinon, le projet est enregistre automatiquement à un endroit précis dans le dossier du chantier
+            name_project = os.path.basename(path_construction)
+            path_proj_relative= os.path.join("3_QUALIF_CALIX/QGIS", name_project)+".qgs"
+            path_project = os.path.join(path_construction,path_proj_relative)
             
-        source_satellite_image = "PHR"
-        
-        #remplissage du .xml
         
         #partie parametres du projet
-        self.create_parametersFile_PARAMETERS(tree, root, path_carto_mondiale[1],path_dap[1],path_style[1], path_construction, source_satellite_image)
+        self.create_parametersFile_PARAMETERS(tree, root, path_carto_mondiale[1],path_dap[1],path_style[1], path_construction, path_project,source_satellite_image)
         
-        #partie import du projet
-        
+        #partie import du projet dossier chantier
         self.create_parametersFile_IMPORT(tree, root, path_construction,"layers", "layer" )
         
-        #creation d'un nouveau fichier parametre
-        #tree.write(r"C:\Users\segau\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\creation_export\fichier_param2.xml")
-        tree.write(os.path.join(self.plugin_dir,"fichier_config_resultat.xml"))
-        
-        # LIT
-        tree = etree.parse(os.path.join(self.plugin_dir,"fichier_config_resultat.xml"))
-
+        #enregistrement sous un nouveau fichier parametre FIHCIER_CONFIGURATION_RESULTAT_1 
+        tree.write(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1.xml"))
+        tree.write(os.path.join(os.path.dirname(path_project),"fichier_configuration_creation_projet.xml"))
+        self.dlg.textBrowser_3.setTextColor(green_color)
+        self.dlg.textBrowser_3.append( "\nLe fichier_configuration_creation_projet est disponible dans le dossier "+os.path.dirname(path_project)+"\n")
+        self.dlg.textBrowser_3.setTextColor(black_color)
+        ### LECTURE DU FICHIER_CONFIGURATION_RESULTAT_1 ###
+        tree = etree.parse(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1.xml"))
         root = tree.getroot()
-        #recuperation_path_style('Style_Perf')
-         # Create a project
+        
+        #creation projet QGIS
         project = QgsProject.instance()
-        color = QColor(166, 206, 227,255)
+        color = QColor(166, 206, 227,255) #paramètre couleur fond projet en bleu
         project.setBackgroundColor(color)
+        
+        #remplissage du journal de message du plugin
+        self.dlg.textBrowser_3.setTextColor(red_color)
+        self.dlg.textBrowser_3.append( "Chargement des couches avec les styles :")
+        self.dlg.textBrowser_3.setTextColor(black_color)
         self.loading_layers(tree, root, project)
+        
+        #zoom sur l'emprise du chantier
         for lyr in project.mapLayers().values():
             if lyr.name() == "EMPRISE_PU_CHANTIER":
                 iface.mapCanvas().setExtent(lyr.extent())
-                iface.mapCanvas().refresh()
+        
+        #recuperation du chemin d'enregistrement du projet dans le FICHIER_CONFIGURATION_RESULTAT_1
+        filename_project = self.recovery_filename_project(root)
+        
+        #sauvegarde du projet
+        if not os.path.exists(os.path.dirname(filename_project)):
+                os.makedirs(os.path.dirname(filename_project))
+        project.write(filename_project)
+        self.dlg.textBrowser_3.setTextColor(red_color)
+        self.dlg.textBrowser_3.append( "Le projet est sauvegardé dans l'emplacement :"+filename_project)
         pass
+    
+    ### PARTIE 2 ###
+    ### SELECTION DES DONNEES EN ENTREE ###
+    def select_output_images(self):
+        directory_name = QFileDialog.getExistingDirectory(self.dlg)
+        self.dlg.lineEdit_3.setText(directory_name)
+        
+    def filling_title(self, root):
+        """Verifie si la checkbox titre a ete coche"""
+        if self.dlg.checkBox_3.isChecked()==True:
+            for group in root[1].findall('image'):
+                group.find('title').set("exist","yes")
+            self.dlg.textBrowser_3.append("AJOUT d'un titre à chaque illustration")
+        else: 
+            for group in root[1].findall('image'):
+                group.find('title').set("exist","no")     
+            self.dlg.textBrowser_3.append("ABSENCE d'un titre à chaque illustration")
+                
+    def filling_legende(self, root):
+        """Verifie si la checkbox legende Spot a ete coche"""
+        if self.dlg.checkBox_4.isChecked()==True:
+            for group in root[1].findall('image'):
+                group.find('legende').set("exist","yes")
+            self.dlg.textBrowser_3.append("AJOUT d'une légende à chaque illustration")
+        else: 
+            for group in root[1].findall('image'):
+                group.find('legende').set("exist","no")  
+            self.dlg.textBrowser_3.append("ABSENCE d'une légende à chaque illustration")
+    
+    # def filling_scale(self, root):
+    #     """Verifie si la checkbox echelle a ete coche"""
+    #     if self.dlg.checkBox_5.isChecked()==True:
+    #         for group in root[1].findall('image'):
+    #             group.find('scale').set("exist","yes")
+    #     self.dlg.textBrowser_3.append("AJOUT d'une échelle à chaque illustration")
+    #     else: 
+    #         for group in root[1].findall('image'):
+    #             group.find('scale').set("exist","no")  
+    #         self.dlg.textBrowser_3.append("ABSENCE d'une échelle à chaque illustration")
+    
+    # def export(self, project):
+    #     """Verifie quelle source satellite image a ete choisie par l'utilisateur"""
+    #     for image in root[1].findall('image'):
+    #         manager = project.layoutManager()
+    #         layoutName = image.find('title').text
+    #         layouts_list = manager.printLayouts()
+    #         # remove any duplicate layouts
+    #         for layout in layouts_list:
+    #             if layout.name() == layoutName:
+    #                 manager.removeLayout(layout)
+    #         layout = QgsPrintLayout(project)
+    #         layout.initializeDefaults()
+    #         layout.setName(layoutName)
+    #         manager.addLayout(layout)
+    #         groupe = root_proj.addGroup(group.get('value'))
+    #         #creation du groupe
+    #         if group.getchildren()!= []:
+        
+    ### REMPLISSAGE DU FICHIER_CONIFGURATION_2 ###
+    
+    def create_configuration_2_PARAMETERS(self, tree, root, name_project, path_project, path_img):
+        tree_path = "/export_images/properties"
+        for noeud in tree.xpath(tree_path+"/name_project"):
+            noeud.text = os.path.basename(path_project)
+        for noeud in tree.xpath(tree_path+"/path_project"):
+            noeud.text = os.path.normpath(path_project)
+        for noeud in tree.xpath(tree_path+"/path"):
+            noeud.text = os.path.normpath(path_img)
             
+            
+    def run_2(self):
+        ### REMPLISSAGE DU FICHIER_CONFIGURATION_2 ###
+        #initialisation de l'arbre du fichier .xml
+        tree = etree.parse(os.path.join(self.plugin_dir,"fichier_configuration_2.xml"))
+        root = tree.getroot()
+       
+        
+        #remplissage du journal de messages du plugin
+        #definition des couleurs des messages
+        green_color = QColor(0,255,0,255)
+        red_color = QColor(255,0,0,255)
+        black_color = QColor(0,0,0,255)
+        
+        #Verifications des entrees de l'utilisateur
+        self.dlg.textBrowser_3.setTextColor(green_color)
+        self.dlg.textBrowser_3.append( "\nEXPORT DES ILLUSTRATIONS")
+        self.dlg.textBrowser_3.setTextColor(red_color)
+        self.dlg.textBrowser_3.append( "Vérifications des données entrées :")
+        self.dlg.textBrowser_3.setTextColor(black_color)
+        
+        #verifications des entrees de l'utilisateur
+        path_img = ["des illustrations", self.dlg.lineEdit_3.text()]
+        self.filling_title( root)
+        self.filling_legende( root)
+        #scale = self.recovery_source_img()
+        
+        name_project = os.path.basename(QgsProject.instance().fileName()).replace(".qgs","")
+        path_project = QgsProject.instance().fileName()
+        if self.data_verification_dir(path_img)==True:
+            #Chemin valide = completion de l'import valide
+            self.create_configuration_2_PARAMETERS(tree, root, name_project, path_project, path_img[1])
+            path_img = path_img[1]
+        else : 
+            if "3_QUALIF_CALIX" in path_project:
+                path_img = os.path.normpath(os.path.join(os.path.dirname(os.path.dirname(path_project)), "ILLUSTRATIONS"))
+            else:
+                path_img = os.path.normpath(os.path.join(path_project, "3_QUALIF_CALIX\ILLUSTRATIONS"))
+            if not os.path.exists(path_img):
+                os.makedirs(path_img)
+            self.create_configuration_2_PARAMETERS(tree, root, name_project, path_project, path_img)
+          
+        #enregistrement sous un nouveau fichier parametre FIHCIER_CONFIGURATION_RESULTAT_2 
+        tree.write(os.path.join(self.plugin_dir,"fichier_configuration_resultat_2.xml"))
+        tree.write(os.path.join(path_img,"fichier_configuration_export.xml"))
+        self.dlg.textBrowser_3.setTextColor(green_color)
+        self.dlg.textBrowser_3.append( "\nLe fichier_configuration_export est disponible dans le dossier "+path_img+"\n")
+        self.dlg.textBrowser_3.setTextColor(black_color)
+        
+        ### LECTURE DU FICHIER_CONFIGURATION_2 ###
+        
     def run(self):
         """Run method that performs all the real work"""
 
@@ -507,48 +715,19 @@ class CreationEtExport:
         if self.first_start == True:
             self.first_start = False
             self.dlg = CreationEtExportDialog()
+            ###PREMIERE PARTIE DU PLUGIN : CREATION D'UN PROJET###
             self.dlg.pushButton.clicked.connect(self.select_input_construction)
             self.dlg.pushButton_1.clicked.connect(self.select_input_DAP)
             self.dlg.pushButton_5.clicked.connect(self.select_input_SHP_Monde)
             self.dlg.pushButton_6.clicked.connect(self.select_input_styles)
             self.dlg.pushButton_7.clicked.connect(self.select_output_project)
             self.dlg.pushButton_3.clicked.connect(self.run_1)
+            ###DEUXIEME PARTIE DU PLUGIN : EXPORT DES ILLUSTRATIONS###
+            self.dlg.pushButton_2.clicked.connect(self.select_output_images)
+            self.dlg.pushButton_4.clicked.connect(self.run_2)
         # show the dialog
         self.dlg.show()
-        # Run the dialog event loop
-        #result = self.dlg.pushButton_3.exec_()
-        
-        # creation = QPushButton(self.dlg.pushButton_3)
-        # result =  creation.pressed()  
-        # See if OK was pressed
-        # if result==True:
-        #     #initialisation de l'arbre du fichier .xml
-        #     tree = etree.parse(r"fichier_parametre_creation_projet_2.xml")
-        #     root = tree.getroot()
-        
-        #     #parametres qui seront fournis par l'interface
-        #     path_carto_mondiale = self.dlg.lineEdit_5.text()
-        #     path_dap = self.dlg.lineEdit_2.text()
-        #     path_style = self.dlg.lineEdit_4.text()
-        #     path_construction = self.dlg.lineEdit.text()
-        #     source_satellite_image = "PHR"
-            
-        #     #remplissage du .xml
-            
-        #     #partie parametres du projet
-        #     create_parametersFile_PARAMETERS(tree, root, path_carto_mondiale,path_dap, path_style, path_construction, source_satellite_image)
-            
-        #     #partie import du projet
-        #     create_parametersFile_IMPORT(tree, root, path_carto_mondiale,"layers","layer_background" )
-        #     create_parametersFile_IMPORT(tree, root, path_dap,"layers","layer_DAP" )
-        #     create_parametersFile_IMPORT(tree, root, path_style,"style", "styles" )
-        #     create_parametersFile_IMPORT(tree, root, path_construction,"layers", "layer" )
-            
-        #     #creation d'un nouveau fichier parametre
-        #     tree.write(r"fichier_param2.xml")
-        #     # Do something useful here - delete the line containing pass and
-        #     # substitute with your code.
-        #     pass
+       
 #self.progressChanged.connect(self.progress.setValue)
         # self.progress.setMaximum(100)
         # self.progress.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
