@@ -22,7 +22,7 @@
  ***************************************************************************/
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, QFileInfo
-from qgis.PyQt.QtGui import QIcon, QColor
+from qgis.PyQt.QtGui import QIcon, QColor, QFont
 from qgis.PyQt.QtWidgets import QAction, QFileDialog, QPushButton
 
 # Initialize Qt resources from file resources.py
@@ -38,6 +38,18 @@ from qgis.core import (
     QgsRectangle,
     QgsLayerTree,
     QgsVectorLayer,
+    QgsPrintLayout,
+    QgsLayoutItemMap,
+    QgsLayoutPoint,
+    QgsLayoutSize,
+    QgsUnitTypes,
+    QgsLayoutExporter,
+    QgsMapSettings,
+    QgsLayoutItemLegend,
+    QgsScaleBarSettings,
+    QgsLayoutItemScaleBar,
+    QgsLayoutItemLabel,
+    
 
 )
 from qgis.gui import (
@@ -246,9 +258,9 @@ class CreationEtExport:
        if type_import == "layers":
            
            #parcours des sous-balises
-           for noeud in root[2][0].findall(tag):
+           for node in root[2][0].findall(tag):
                #pour chaque sous-balise on ajoute un element path
-               relative_path = noeud.get('path')
+               relative_path = node.get('path')
                #construction du chemin absolue pour acceder au dossier des couches
                path_1 = os.path.join(main_path,relative_path)
                #recovery de la liste des fichiers
@@ -259,29 +271,29 @@ class CreationEtExport:
                    #si le fichier repond aux criteres de la sous-balise :
                    # - creation d'un sous-element path qui contient le chemin absolu de la couche
                    # - remplissage de l'attribut nom de la sous-balise correspondant au nom de la couche (=du fichier)
-                   if noeud.get('filter') in file and noeud.get('contain')in file:
-                       path_2 = etree.SubElement(noeud, "path")
+                   if node.get('filter') in file and node.get('contain')in file:
+                       path_2 = etree.SubElement(node, "path")
                        p = os.path.join(path_1,file)
                        path_2.text =  os.path.normpath(p) 
                        layer_exist += path_2.text
                        if "SHP_Monde" in path_2.text:
                           name = file.replace(".shp","")
                        else:
-                          name = noeud.get("contain")
+                          name = node.get("contain")
                           name = name.replace(".","")
-                       noeud.set("layer_name",name)
+                       node.set("layer_name",name)
                if layer_exist=="":
-                   root[2][0].remove(noeud)
+                   root[2][0].remove(node)
                        
                        
        else:
            
-           for noeud in root[2][1].findall(tag):
-               relative_path = noeud.get('path')
+           for node in root[2][1].findall(tag):
+               relative_path = node.get('path')
                path_1 = os.path.join(main_path,relative_path)
                list_files = os.listdir(path_1)
                for file in list_files:
-                  style = etree.SubElement(noeud, "style")
+                  style = etree.SubElement(node, "style")
                   name = file.replace(".qml","")
                   style.set("style_name",name)
                   style.set("id","")
@@ -307,23 +319,23 @@ class CreationEtExport:
         
         """
         tree_path = "/project_creation/project_properties"
-        for noeud in tree.xpath(tree_path+"/name"):
-            noeud.text = os.path.basename(path_project)
-        for noeud in tree.xpath(tree_path+"/path_project"):
-            noeud.text = os.path.normpath(path_project)
-        for noeud in tree.xpath(tree_path+"/construction/path_construction"):
-            noeud.text = path_construction
+        for node in tree.xpath(tree_path+"/name"):
+            node.text = os.path.basename(path_project)
+        for node in tree.xpath(tree_path+"/path_project"):
+            node.text = os.path.normpath(path_project)
+        for node in tree.xpath(tree_path+"/construction/path_construction"):
+            node.text = path_construction
         if path_style!=False:
-            for noeud in tree.xpath(tree_path+"/other_dir/style_dir"):
-                noeud.text = path_style
+            for node in tree.xpath(tree_path+"/other_dir/style_dir"):
+                node.text = path_style
         if path_carto_mondiale!=False:
-            for noeud in tree.xpath(tree_path+"/other_dir/worldmap_dir"):
-                noeud.text = path_carto_mondiale
+            for node in tree.xpath(tree_path+"/other_dir/worldmap_dir"):
+                node.text = path_carto_mondiale
         if path_dap!=False:
-            for noeud in tree.xpath(tree_path+"/other_dir/dap_dir"):
-                noeud.text = path_dap
-        for noeud in tree.xpath(tree_path+"/source_satellite_image"):
-            noeud.text = source_satellite_image
+            for node in tree.xpath(tree_path+"/other_dir/dap_dir"):
+                node.text = path_dap
+        for node in tree.xpath(tree_path+"/source_satellite_image"):
+            node.text = source_satellite_image
     
     ### RECUPERATION DES DONNEES DU FICHIER CONFIGURATION_RESULTAT_1 ###
             
@@ -410,11 +422,12 @@ class CreationEtExport:
            
             return ""
             
-    def loading_layers(self, tree, root, project):
+    def loading_layers(self, tree, root, project, progressBar):
         """Chargement des couches et application des styles
         """
         root_proj = project.layerTreeRoot()
-        
+        value_1 = 50/len(root[1].findall('layer_group'))
+        value = 50
         for group in root[1].findall('layer_group'):
             groupe = root_proj.addGroup(group.get('value'))
             #creation du groupe
@@ -446,7 +459,8 @@ class CreationEtExport:
                                 iface.mapCanvas().refresh()
                                 self.dlg.textBrowser_3.append("La couche "+name+" est chargée")
                             
-        
+                    value += value_1
+                    progressBar.setValue(value)
         
         
     def data_verification_dir_construction(self, data):
@@ -492,6 +506,9 @@ class CreationEtExport:
                 return False
             
     def run_1(self):
+        progressBar = self.dlg.progressBar
+        value = 0
+        progressBar.setValue(value)
         ### REMPLISSAGE DU FICHIER_CONFIGURATION_1 ###
         #initialisation de l'arbre du fichier .xml
         tree = etree.parse(os.path.join(self.plugin_dir,"fichier_configuration_1.xml"))
@@ -544,37 +561,41 @@ class CreationEtExport:
             path_proj_relative= os.path.join("3_QUALIF_CALIX/QGIS", name_project)+".qgs"
             path_project = os.path.join(path_construction,path_proj_relative)
             
-        
+        value = 15
+        progressBar.setValue(value)
         #partie parametres du projet
         self.create_parametersFile_PARAMETERS(tree, root, path_carto_mondiale[1],path_dap[1],path_style[1], path_construction, path_project,source_satellite_image)
-        
+        value = 30
+        progressBar.setValue(value)
         #partie import du projet dossier chantier
         self.create_parametersFile_IMPORT(tree, root, path_construction,"layers", "layer" )
-        
+        value = 45
+        progressBar.setValue(value)
         #enregistrement sous un nouveau fichier parametre FIHCIER_CONFIGURATION_RESULTAT_1 
-        tree.write(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1.xml"))
-        tree.write(os.path.join(os.path.dirname(path_project),"fichier_configuration_creation_projet.xml"))
+        tree.write(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1_"+name_project+".xml"))
+        tree.write(os.path.join(os.path.dirname(path_project),"fichier_configuration_creation_projet_"+name_project+".xml"))
         self.dlg.textBrowser_3.setTextColor(green_color)
         self.dlg.textBrowser_3.append( "\nLe fichier_configuration_creation_projet est disponible dans le dossier "+os.path.dirname(path_project)+"\n")
         self.dlg.textBrowser_3.setTextColor(black_color)
         ### LECTURE DU FICHIER_CONFIGURATION_RESULTAT_1 ###
-        tree = etree.parse(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1.xml"))
+        tree = etree.parse(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1"+name_project+".xml"))
         root = tree.getroot()
         
         #creation projet QGIS
         project = QgsProject.instance()
         color = QColor(166, 206, 227,255) #paramètre couleur fond projet en bleu
         project.setBackgroundColor(color)
-        
+        value = 50
+        progressBar.setValue(value)
         #remplissage du journal de message du plugin
         self.dlg.textBrowser_3.setTextColor(red_color)
         self.dlg.textBrowser_3.append( "Chargement des couches avec les styles :")
         self.dlg.textBrowser_3.setTextColor(black_color)
-        self.loading_layers(tree, root, project)
+        self.loading_layers(tree, root, project,progressBar)
         
-        #zoom sur l'emprise du chantier
+        #zoom sur l'reach du chantier
         for lyr in project.mapLayers().values():
-            if lyr.name() == "EMPRISE_PU_CHANTIER":
+            if lyr.name() == "reach_PU_CHANTIER":
                 iface.mapCanvas().setExtent(lyr.extent())
         
         #recuperation du chemin d'enregistrement du projet dans le FICHIER_CONFIGURATION_RESULTAT_1
@@ -585,7 +606,7 @@ class CreationEtExport:
                 os.makedirs(os.path.dirname(filename_project))
         project.write(filename_project)
         self.dlg.textBrowser_3.setTextColor(red_color)
-        self.dlg.textBrowser_3.append( "Le projet est sauvegardé dans l'emplacement :"+filename_project)
+        self.dlg.textBrowser_3.append( "Le projet est sauvegardé à l'emplacement :"+filename_project)
         pass
     
     ### PARTIE 2 ###
@@ -595,7 +616,7 @@ class CreationEtExport:
         self.dlg.lineEdit_3.setText(directory_name)
         
     def filling_title(self, root):
-        """Verifie si la checkbox titre a ete coche"""
+        """Verifie si la checkbox Titre a ete coche"""
         if self.dlg.checkBox_3.isChecked()==True:
             for group in root[1].findall('image'):
                 group.find('title').set("exist","yes")
@@ -606,7 +627,7 @@ class CreationEtExport:
             self.dlg.textBrowser_3.append("ABSENCE d'un titre à chaque illustration")
                 
     def filling_legende(self, root):
-        """Verifie si la checkbox legende Spot a ete coche"""
+        """Verifie si la checkbox Legende Spot a ete coche"""
         if self.dlg.checkBox_4.isChecked()==True:
             for group in root[1].findall('image'):
                 group.find('legende').set("exist","yes")
@@ -616,48 +637,191 @@ class CreationEtExport:
                 group.find('legende').set("exist","no")  
             self.dlg.textBrowser_3.append("ABSENCE d'une légende à chaque illustration")
     
-    # def filling_scale(self, root):
-    #     """Verifie si la checkbox echelle a ete coche"""
-    #     if self.dlg.checkBox_5.isChecked()==True:
-    #         for group in root[1].findall('image'):
-    #             group.find('scale').set("exist","yes")
-    #     self.dlg.textBrowser_3.append("AJOUT d'une échelle à chaque illustration")
-    #     else: 
-    #         for group in root[1].findall('image'):
-    #             group.find('scale').set("exist","no")  
-    #         self.dlg.textBrowser_3.append("ABSENCE d'une échelle à chaque illustration")
+    def filling_scale(self, root):
+        """Verifie si la checkbox Echelle a ete coche"""
+        if self.dlg.checkBox_5.isChecked()==True:
+            for group in root[1].findall('image'):
+                group.find('scale').set("exist","yes")
+            self.dlg.textBrowser_3.append("AJOUT d'une échelle à chaque illustration")
+        else: 
+            for group in root[1].findall('image'):
+                group.find('scale').set("exist","no")  
+            self.dlg.textBrowser_3.append("ABSENCE d'une échelle à chaque illustration")
+            
+    def find_grid(self,root, image):
+        """Recupere la plus grande emprise des couches de l'illustration"""
+        map_layer = image.find('map')
+        area = 0
+        reach = ""
+        for layer in map_layer.findall('layer'):
+            mapLayers = QgsProject.instance().mapLayersByName(layer.get('name'))
+            if mapLayers!=[] and layer.get('name')!= "CARTO_MONDIALE" and layer.get('name')!= "ZONES_ARC" and layer.get('name')!= "ZONES_ARC_PU_CHANTIER" :
+                layer_reach = QgsProject.instance().mapLayersByName(layer.get('name'))[0]  
+                area_layer =  layer_reach.extent().area()
+                if area_layer>area:
+                    area = area_layer
+                    reach = layer_reach.extent()
+        return reach
+     
+    def filling_size_image(self, root):
+        """Remplis la balise size du fichier configuration pour connaitre l'reach de l'illustration"""
+        for image in root[1].findall('image'):
+            map_layer = image.find('map')
+            reach = self.find_grid(root,image)
+            size = map_layer.find('size')
+            size.text = reach.toString() 
+        return 
     
-    # def export(self, project):
-    #     """Verifie quelle source satellite image a ete choisie par l'utilisateur"""
-    #     for image in root[1].findall('image'):
-    #         manager = project.layoutManager()
-    #         layoutName = image.find('title').text
-    #         layouts_list = manager.printLayouts()
-    #         # remove any duplicate layouts
-    #         for layout in layouts_list:
-    #             if layout.name() == layoutName:
-    #                 manager.removeLayout(layout)
-    #         layout = QgsPrintLayout(project)
-    #         layout.initializeDefaults()
-    #         layout.setName(layoutName)
-    #         manager.addLayout(layout)
-    #         groupe = root_proj.addGroup(group.get('value'))
-    #         #creation du groupe
-    #         if group.getchildren()!= []:
+    
+    def getMapLayers(self, image):
+        """Recupere la liste des couches de l'illustration"""
+        map_layer = image.find('map')
+        layers = []
+        for layer in map_layer.findall('layer'):
+             if QgsProject.instance().mapLayersByName(layer.get('name'))!=[]:
+                 layers.append(QgsProject.instance().mapLayersByName(layer.get('name'))[0])   
+                 self.dlg.textBrowser_3.append("La couche "+layer.get('name')+" a ete CHARGEE")
+        return layers
+    
+    def legende(self, layout, map):
+        """Ajout d'une legende a l'illustration"""
+        legend = QgsLayoutItemLegend(layout)
+        legend.setLinkedMap(map) # pass a QgsLayoutItemMap object
+        legend.setLegendFilterByMapEnabled(True)
+        legend.refresh()     
+        layout.addLayoutItem(legend)
+        legend.attemptMove(QgsLayoutPoint(200,100,QgsUnitTypes.LayoutMillimeters))
+    
+    def title(self, layout,layoutName, map):
+        """Ajout d'un titre a l'illustration"""
+        title = QgsLayoutItemLabel(layout)
+        title.setText(layoutName)
+        title.setFont(QFont('Arial',16))
+        title.adjustSizeToText()
+        layout.addLayoutItem(title) # add the title to the layout
+        title.attemptMove(QgsLayoutPoint(100,5,QgsUnitTypes.LayoutMillimeters))
+    
+    def scalebar(self, layout, map):
+        """Ajout d'une echelle a l'illustration"""
+        scalebar = QgsLayoutItemScaleBar(layout)
         
+        scalebar.setStyle('Line Ticks Up') # let's people choose in the menu of the plugin for the next version
+        
+        scalebar.setUnits(QgsUnitTypes.DistanceKilometers)
+        scalebar.setNumberOfSegments(4)
+        scalebar.setNumberOfSegmentsLeft(0)
+        scalebar.setUnitsPerSegment(150)
+        scalebar.setLinkedMap(map)
+        scalebar.setUnitLabel('km')
+        scalebar.setFont(QFont('Arial',14))
+       
+        scalebar.update()
+        layout.addLayoutItem(scalebar) # add the scalebar to the layout
+        scalebar.attemptMove(QgsLayoutPoint(190,190,QgsUnitTypes.LayoutMillimeters))
+    
+    def export(self, root, path_img, progressBar):
+        """Verifie quelle source satellite image a ete choisie par l'utilisateur"""
+        
+        #initialisation du projet ouvert/cree
+        project = QgsProject().instance()
+    
+        #creation d'un manager de mise en page
+        manager = project.layoutManager()
+        #parcours les illustrations
+        value_1 = 50/len(root[1].findall('image'))
+        value = 50
+        for image in root[1].findall('image'):
+            layoutName = image.find('title').text
+            layouts_list = manager.printLayouts()
+            #supprime la mise en page si elle existe deja
+            for layout in layouts_list:
+                if layout.name() == layoutName:
+                    manager.removeLayout(layout)
+                    
+            #creer la mise en page
+            layout = QgsPrintLayout(project)
+            layout.initializeDefaults()
+            layout.setName(layoutName)
+            
+            #ajoute la mise en page à la liste des mises en page
+            manager.addLayout(layout)
+            
+            #creation d'un emplacement carte dans la mise en page
+            map = QgsLayoutItemMap(layout)
+            map.setRect(20,20,20,20)
+            
+            #recuperation des couches pour l'illustration
+            layers = self.getMapLayers(image)
+           
+                   
+            #configuration de l'emplacement carte
+            ms = QgsMapSettings()
+            #ajout des couches à la carte
+            ms.setLayers(layers) # set layers to be mapped
+            map.setLayers(layers)
+            #configurations :
+            rect = QgsRectangle(ms.fullExtent())
+            rect.scale(1.0)
+            color = QColor(166, 206, 227,255)
+            
+            map_layer = image.find('map')
+            #pour l'reach de l'image
+            mini, maxi = map_layer.find('size').text.split(":")
+            xmin, ymin = mini.split(",")
+            xmax, ymax = maxi.split(",")
+            reach = QgsRectangle(float(xmin)-3.0,float(ymin)-3.0,float(xmax)+3.0,float(ymax)+3.0)
+            ms.setExtent(reach)
+            ms.setBackgroundColor(color)
+            map.setExtent(reach)
+            
+            #ajout de la carte à la mise en page
+            layout.addLayoutItem(map) # add map to the layout
+            
+            map.attemptMove(QgsLayoutPoint(5,20,QgsUnitTypes.LayoutMillimeters))
+            map.attemptResize(QgsLayoutSize(180,180,QgsUnitTypes.LayoutMillimeters))
+          
+            #ajout legende
+            if image.find('legende').get('exist')=="yes":
+                self.legende(layout, map)
+            
+            #ajout d'un titre 
+            if image.find('title').get('exist')=="yes":
+                self.title(layout,layoutName, map)
+            
+            #ajout d'une échelle
+            if image.find('scale').get('exist')=="yes":
+                self.scalebar(layout, map)
+        
+            
+            # base_path = os.path.join(QgsProject.instance().homePath())
+            pdf_path = os.path.join(path_img, layoutName+".png")
+
+            exporter = QgsLayoutExporter(layout)
+            exporter.exportToImage(pdf_path, QgsLayoutExporter.ImageExportSettings())
+            for layer in layers:
+                iface.setActiveLayer(layer)
+            self.dlg.textBrowser_3.append(layoutName+" a bien été exportée")
+            value+=value_1
+            progressBar.setValue(value)
+            
     ### REMPLISSAGE DU FICHIER_CONIFGURATION_2 ###
     
     def create_configuration_2_PARAMETERS(self, tree, root, name_project, path_project, path_img):
         tree_path = "/export_images/properties"
-        for noeud in tree.xpath(tree_path+"/name_project"):
-            noeud.text = os.path.basename(path_project)
-        for noeud in tree.xpath(tree_path+"/path_project"):
-            noeud.text = os.path.normpath(path_project)
-        for noeud in tree.xpath(tree_path+"/path"):
-            noeud.text = os.path.normpath(path_img)
+        for node in tree.xpath(tree_path+"/name_project"):
+            node.text = os.path.basename(path_project)
+        for node in tree.xpath(tree_path+"/path_project"):
+            node.text = os.path.normpath(path_project)
+        for node in tree.xpath(tree_path+"/path"):
+            node.text = os.path.normpath(path_img)
             
-            
+      
     def run_2(self):
+        progressBar = self.dlg.progressBar_2
+        value = 0
+        progressBar.setValue(value)
+       
+        """PARTIE 2 : EXPORT DES ILLUSTRATIONS"""
         ### REMPLISSAGE DU FICHIER_CONFIGURATION_2 ###
         #initialisation de l'arbre du fichier .xml
         tree = etree.parse(os.path.join(self.plugin_dir,"fichier_configuration_2.xml"))
@@ -682,7 +846,8 @@ class CreationEtExport:
         self.filling_title( root)
         self.filling_legende( root)
         #scale = self.recovery_source_img()
-        
+        value = 15
+        progressBar.setValue(value)
         name_project = os.path.basename(QgsProject.instance().fileName()).replace(".qgs","")
         path_project = QgsProject.instance().fileName()
         if self.data_verification_dir(path_img)==True:
@@ -693,19 +858,26 @@ class CreationEtExport:
             if "3_QUALIF_CALIX" in path_project:
                 path_img = os.path.normpath(os.path.join(os.path.dirname(os.path.dirname(path_project)), "ILLUSTRATIONS"))
             else:
-                path_img = os.path.normpath(os.path.join(path_project, "3_QUALIF_CALIX\ILLUSTRATIONS"))
-            if not os.path.exists(path_img):
-                os.makedirs(path_img)
+                path_img = os.path.normpath(os.path.join(os.path.dirname(path_project), "ILLUSTRATIONS"+name_project))
+                if not os.path.exists(path_img):
+                    os.makedirs(path_img)
+            
             self.create_configuration_2_PARAMETERS(tree, root, name_project, path_project, path_img)
-          
+        
+        self.filling_size_image(root)
         #enregistrement sous un nouveau fichier parametre FIHCIER_CONFIGURATION_RESULTAT_2 
-        tree.write(os.path.join(self.plugin_dir,"fichier_configuration_resultat_2.xml"))
-        tree.write(os.path.join(path_img,"fichier_configuration_export.xml"))
+        tree.write(os.path.join(self.plugin_dir,"fichier_configuration_resultat_2_"+name_project+".xml"))
+        tree.write(os.path.join(path_img,"fichier_configuration_export_"+name_project+".xml"))
+        value = 50
+        progressBar.setValue(value)
+        #messages
         self.dlg.textBrowser_3.setTextColor(green_color)
         self.dlg.textBrowser_3.append( "\nLe fichier_configuration_export est disponible dans le dossier "+path_img+"\n")
         self.dlg.textBrowser_3.setTextColor(black_color)
         
         ### LECTURE DU FICHIER_CONFIGURATION_2 ###
+        self.export(root, path_img, progressBar)
+    
         
     def run(self):
         """Run method that performs all the real work"""
@@ -717,10 +889,11 @@ class CreationEtExport:
             self.dlg = CreationEtExportDialog()
             ###PREMIERE PARTIE DU PLUGIN : CREATION D'UN PROJET###
             self.dlg.pushButton.clicked.connect(self.select_input_construction)
+            self.dlg.pushButton_7.clicked.connect(self.select_output_project)
             self.dlg.pushButton_1.clicked.connect(self.select_input_DAP)
             self.dlg.pushButton_5.clicked.connect(self.select_input_SHP_Monde)
             self.dlg.pushButton_6.clicked.connect(self.select_input_styles)
-            self.dlg.pushButton_7.clicked.connect(self.select_output_project)
+            
             self.dlg.pushButton_3.clicked.connect(self.run_1)
             ###DEUXIEME PARTIE DU PLUGIN : EXPORT DES ILLUSTRATIONS###
             self.dlg.pushButton_2.clicked.connect(self.select_output_images)
@@ -728,9 +901,3 @@ class CreationEtExport:
         # show the dialog
         self.dlg.show()
        
-#self.progressChanged.connect(self.progress.setValue)
-        # self.progress.setMaximum(100)
-        # self.progress.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-        # self.progressMessageBar.layout().addWidget(self.progress)
-        # self.message_bar_item = iface.messageBar().pushWidget(self.progressMessageBar,
-        #                                                       Qgis.Info)
