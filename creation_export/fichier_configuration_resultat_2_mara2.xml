@@ -1,20 +1,19 @@
 <export_images>
 	<properties>
-		<name_project>test.qgs</name_project>
-		<path_project>D:\DONNEES_STAGE\Test_projet\test.qgs</path_project>
-		<path>D:\DONNEES_STAGE\Test_projet\ILLUSTRATIONS</path>
+		<name_project>mara2.qgs</name_project>
+		<path_project>D:\DONNEES_STAGE\Test_projet\mara2.qgs</path_project>
+		<path>D:\DONNEES_STAGE\Test_projet\ILLUSTRATIONSmara2</path>
 	</properties>
 	<export>
 		<image>
-			<title exist="yes">PU du chantier</title>
+			<title exist="no">PU du chantier</title>
 			<map exist="yes">
 				<layer name="EMPRISE_PU_CHANTIER"/>
 				<layer name="ZONES_ARC_PU_CHANTIER"/>
 				<layer name="DC_CHANTIER"/>
 				<layer name="PERF_CHANTIER"/>
 				<layer name="CARTO_MONDIALE"/>
-				<scale/>
-				<size/>
+				<size>60.0000000000000142,29.0000000000000675 : 65.0000000000000853,37.0000000000000782</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -22,16 +21,16 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Emprise du chantier</title>
+			<title exist="no">Emprise du chantier</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_EF"/>
 				<layer name="EMPRISE_EF"/>
 				<layer name="ZONES_ARC"/>
 				<layer name="CARTO_MONDIALE"/>
-				<scale/>
-				<size/>
+				<size>56.0000000000000568,24.9999999999999858 : 75.0000000000000568,39.0000000000000639</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -39,20 +38,20 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Images sources pour le chantier</title>
+			<title exist="no">Images sources pour le chantier</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_NOM"/>
 				<layer name="PROGRAMMATIONS_RESIDUELLES"/>
 				<layer name="DC_REPRIS"/>
-				<layer name="Pleiades 1A"/>
-				<layer name="Spot 7"/>
-				<layer name="Pleiades 1B"/>
-				<layer name="Spot 6"/>
+				<layer name="PLEIADE 1A"/>
+				<layer name="SPOT 7"/>
+				<layer name="PLEIADE 1B"/>
+				<layer name="SPOT 6"/>
 				<layer name="CARTO_MONDIALE"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -60,14 +59,14 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Incidence moyenne</title>
+			<title exist="no">Incidence moyenne</title>
 			<map exist="yes">
 				<layer name="INCIDENCE_MOY"/>
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -75,15 +74,15 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Incidence maximale</title>
+			<title exist="no">Incidence maximale</title>
 			<map exist="yes">
 				<layer name="INCIDENCE_MOY"/>
 				<layer name="INCIDENCE_MAX"/>
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exists="yes" exist="yes">
 				<title/>
@@ -91,17 +90,17 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Angles d'incidence sur les zones DCZU</title>
+			<title exist="no">Angles d'incidence sur les zones DCZU</title>
 			<map exist="yes">
 				<layer name="URBAIN"/>
 				<layer name="URBAIN_DENSE"/>
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="INCIDENCE"/>
 				<layer name="CARTO_MONDIALE"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -109,16 +108,16 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Respect des contraintes d'angles sur zones de relief</title>
+			<title exist="no">Respect des contraintes d'angles sur zones de relief</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="INCIDENCE_ANGLE_15"/>
 				<layer name="ZONES_MONTAGNES"/>
 				<layer name="CARTO_MONDIALE"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -126,13 +125,13 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Alertes sur l'&#233;quipement en appui</title>
+			<title exist="no">Alertes sur l'&#233;quipement en appui</title>
 			<map exist="yes">
 				<layer name="ALERTES_APPUI"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -140,13 +139,13 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Alertes sur l'&#233;quipement en liaison</title>
+			<title exist="no">Alertes sur l'&#233;quipement en liaison</title>
 			<map exist="yes">
 				<layer name="ALERTES_LIAISON"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -154,16 +153,16 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Alertes sur les param&#232;tres de recalage</title>
+			<title exist="no">Alertes sur les param&#232;tres de recalage</title>
 			<map exist="yes">
-				<layer name="PRECALAGE_PHR"/>
+				<layer name="PRECALAGE_PLEIADE"/>
 				<layer name="PRECALAGE_SPOT"/>
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="CARTO_MONDIALE"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -171,14 +170,14 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Biais XY sur les points d'appui</title>
+			<title exist="no">Biais XY sur les points d'appui</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="BIAIS_APPUI"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -186,14 +185,14 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Ecarts-types XY sur les points d'appui</title>
+			<title exist="no">Ecarts-types XY sur les points d'appui</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="ECARTTYPE_APPUI"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -201,14 +200,14 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Biais XY sur les points de liaison</title>
+			<title exist="no">Biais XY sur les points de liaison</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="BIAIS_LIAISON"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -216,14 +215,14 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Ecarts-types XY sur les points de liaison</title>
+			<title exist="no">Ecarts-types XY sur les points de liaison</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="ECARTTYPE_LIAISON"/>
-				<scale/>
-				<size/>
+				<size>59.8533989000000020,28.7808518000000007 : 65.1687514999999991,37.2493873000000022</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -231,14 +230,14 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Localisation des alertes du contr&#244;le sur la BD_AMER </title>
+			<title exist="no">Localisation des alertes du contr&#244;le sur la BD_AMER </title>
 			<map exist="yes">
 				<layer name="STAT_AMER"/>
 				<layer name="CARTO_MONDIALE"/>
-				<scale/>
-				<size/>
+				<size>59.8513790000000014,28.7809524000000003 : 65.1689097999999944,37.2492187000000001</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -246,16 +245,16 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 		<image>
-			<title exist="yes">Mesures g&#233;om&#233;triques sur donn&#233;es d&#8217;appu</title>
+			<title exist="no">Mesures g&#233;om&#233;triques sur donn&#233;es d&#8217;appu</title>
 			<map exist="yes">
 				<layer name="EMPILEMENTS"/>
 				<layer name="ALBATROS"/>
 				<layer name="EMPRISE_DAP"/>
 				<layer name="CARTO_MONDIALE"/>
-				<scale/>
-				<size/>
+				<size>60.0000000000000142,29.0000000000000675 : 65.0000000000000853,37.0000000000000782</size>
 			</map>
 			<legende exist="yes">
 				<title/>
@@ -263,6 +262,7 @@
 				<x/>
 				<y/>
 			</legende>
+			<scale exist="no"/>
 		</image>
 	</export>
 </export_images>

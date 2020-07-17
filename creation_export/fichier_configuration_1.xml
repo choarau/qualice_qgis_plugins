@@ -82,7 +82,7 @@
 			<layer layer_name="SG_Caracteristix" style_name="Style_incidence_supinf_15">
 				<name>INCIDENCE_ANGLE_15</name>
 			</layer>
-			<layer layer_name="DCOS_V2_fusion" style_name="style_zone_montagnes">
+			<layer layer_name="DCOS_V2_fusion" style_name="Style_zone_montagnes">
 				<name>ZONES_MONTAGNES</name>
 			</layer>
 			

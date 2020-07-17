@@ -159,7 +159,7 @@
 		<image>
 			<title exist="no">Alertes sur les paramètres de recalage</title>
 			<map exist="yes">
-				<layer name="PRECALAGE_PHR"/>
+				<layer name="PRECALAGE_PLEIADE"/>
 				<layer name="PRECALAGE_SPOT"/>
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="CARTO_MONDIALE"/>

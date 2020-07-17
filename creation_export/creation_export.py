@@ -31,6 +31,7 @@ from .resources import *
 from .creation_export_dialog import CreationEtExportDialog
 import os.path
 
+from .Color import Color
 from qgis.core import (
     QgsProject,
     Qgis,
@@ -216,25 +217,35 @@ class CreationEtExport:
                 action)
             self.iface.removeToolBarIcon(action)
 
+
+
+################################CREATION PROJET#####################################################""
+   
     ### SELECTION DES DONNEES EN ENTREES ###
     def select_output_project(self):
+        """Selection de l'emplacement d'enregistrement du projet"""
         filename, _filter = QFileDialog.getSaveFileName(
             self.dlg, " ","",'(*.qgs)')
         self.dlg.lineEdit_6.setText(filename)
     
     def select_input_construction(self):
+        """Selection de l'emplacement du dossier chantier"""
         directory_name = QFileDialog.getExistingDirectory(self.dlg)
         self.dlg.lineEdit.setText(directory_name)
+        self.dlg.lineEdit_6.setText(directory_name+"/3_QUALIF_CALIX/QGIS/"+os.path.basename(directory_name)+".qgs")
         
     def select_input_SHP_Monde(self):
+        """Selection de l'emplacement du dossier SHP_Monde"""
         directory_name = QFileDialog.getExistingDirectory(self.dlg)
         self.dlg.lineEdit_5.setText(directory_name)
     
     def select_input_styles(self):
+        """Selection de l'emplacement du dossier style_QGIS"""
         directory_name = QFileDialog.getExistingDirectory(self.dlg)
         self.dlg.lineEdit_4.setText(directory_name)
     
     def select_input_DAP(self):
+        """Selection de l'emplacement du dossier DAP"""
         directory_name = QFileDialog.getExistingDirectory(self.dlg)
         self.dlg.lineEdit_2.setText(directory_name)
         
@@ -262,7 +273,7 @@ class CreationEtExport:
                #pour chaque sous-balise on ajoute un element path
                relative_path = node.get('path')
                #construction du chemin absolue pour acceder au dossier des couches
-               path_1 = os.path.join(main_path,relative_path)
+               path_1 = os.path.normpath(os.path.join(main_path,relative_path))
                #recovery de la liste des fichiers
                list_files = os.listdir(path_1)
                layer_exist = ""
@@ -290,7 +301,7 @@ class CreationEtExport:
            
            for node in root[2][1].findall(tag):
                relative_path = node.get('path')
-               path_1 = os.path.join(main_path,relative_path)
+               path_1 = os.path.normpath(os.path.join(main_path,relative_path))
                list_files = os.listdir(path_1)
                for file in list_files:
                   style = etree.SubElement(node, "style")
@@ -324,16 +335,16 @@ class CreationEtExport:
         for node in tree.xpath(tree_path+"/path_project"):
             node.text = os.path.normpath(path_project)
         for node in tree.xpath(tree_path+"/construction/path_construction"):
-            node.text = path_construction
+            node.text = os.path.normpath(path_construction)
         if path_style!=False:
             for node in tree.xpath(tree_path+"/other_dir/style_dir"):
-                node.text = path_style
+                node.text = os.path.normpath(path_style)
         if path_carto_mondiale!=False:
             for node in tree.xpath(tree_path+"/other_dir/worldmap_dir"):
-                node.text = path_carto_mondiale
+                node.text = os.path.normpath(path_carto_mondiale)
         if path_dap!=False:
             for node in tree.xpath(tree_path+"/other_dir/dap_dir"):
-                node.text = path_dap
+                node.text = os.path.normpath(path_dap)
         for node in tree.xpath(tree_path+"/source_satellite_image"):
             node.text = source_satellite_image
     
@@ -407,12 +418,14 @@ class CreationEtExport:
             return "PLEIADE"
         else:
             iface.messageBar().pushMessage("Erreur","Vous n'avez cocher aucune source satellite", level=Qgis.Warning)
-            self.dlg.textBrowser_3.append( "Aucune sources satellite n'a été choisi")
+            self.dlg.textBrowser_3.setColor(Color.RED.value)
+            self.dlg.textBrowser_3.append( "Erreur : aucune sources satellite n'a été choisi")
+            self.dlg.textBrowser_3.setColor(Color.BLACK.value)
             return "PLEIADE/SPOT"
             
 
     def pleiade_spot(self,root,group, layer,name, layer_name):
-        """Recupere le nom de la source des images"""
+        """Recuperation le nom de la source des images"""
         layer_source = root[0].find('source_satellite_image')
         source_img = layer_source.text
         if source_img in name or source_img=="PLEIADE/SPOT":
@@ -421,9 +434,26 @@ class CreationEtExport:
             layer.getparent().remove(layer)
            
             return ""
+        
+    def testExist(self, name, path):
+        if not path:
+            self.dlg.textBrowser_3.setTextColor(Color.RED.value)
+            self.dlg.textBrowser_3.append("Erreur : "+name+" n'a pas été chargé")
+            self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
+            
             
     def loading_layers(self, tree, root, project, progressBar):
         """Chargement des couches et application des styles
+        
+        Entree:
+            tree : type lxml.etree
+                correspond à l'arborescence du fichier .xml
+            root : type root
+                correspond au rootage pour passer les noeuds/balises du fichier .xml
+            project : type QgsProject
+                correspond au projet Qgis chargé dans QGIS
+            progressBar : type QgsProgressBar
+                correspond à la barre de chargement
         """
         root_proj = project.layerTreeRoot()
         value_1 = 50/len(root[1].findall('layer_group'))
@@ -440,7 +470,8 @@ class CreationEtExport:
                     style_name = layer.get('style_name')
                     path_layer = self.recovery_path_import(layer_name, root)
                     path_style = self.recovery_path_style(style_name, root)
-                    
+                    self.testExist(style_name, path_style)
+                    self.testExist(layer_name, path_layer)
                     if not path_layer:
                         pass
                     else:
@@ -457,7 +488,7 @@ class CreationEtExport:
                                 project.addMapLayer(layer, False)
                                 groupe.addLayer(layer)   
                                 iface.mapCanvas().refresh()
-                                self.dlg.textBrowser_3.append("La couche "+name+" est chargée")
+                                self.dlg.textBrowser_3.append(name+" chargée")
                             
                     value += value_1
                     progressBar.setValue(value)
@@ -480,6 +511,9 @@ class CreationEtExport:
                 self.dlg.textBrowser_3.append("Le chemin d'accès "+data+" est valide")
             else:
                 iface.messageBar().pushMessage("Erreur", "Le chemin d'accès du dossier du chantier n'existe pas", level=Qgis.Critical)
+                self.dlg.textBrowser_3.setTextColor(Color.RED.value)
+                self.dlg.textBrowser_3.append("Erreur : le chemin d'accès du dossier chantier n'existe pas")
+                self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
                 
     def data_verification_dir(self, data):
         """Verification du bon remplissage des autres champs de l'interface
@@ -494,21 +528,27 @@ class CreationEtExport:
         if not data[1]:
             text =  "Le champ du dossier "+data[0]+" est vide, il n'a pas été rempli"
             iface.messageBar().pushMessage("Erreur",text, level=Qgis.Warning)
-            self.dlg.textBrowser_3.append( "Le champ du dossier "+data[0]+" est vide")
+            self.dlg.textBrowser_3.setTextColor(Color.RED.value)
+            self.dlg.textBrowser_3.append( "Erreur : le champ du dossier "+data[0]+" est vide")
+            self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
             return False
         else:
             if os.path.exists(data[1]):
                 self.dlg.textBrowser_3.append("Le chemin d'accès "+data[0]+" est valide")
                 return True
             else:
-                
-                self.dlg.textBrowser_3.append( "Le chemin d'accès du dossier "+os.path.basename(data[1])+" n'existe pas")
+                self.dlg.textBrowser_3.setTextColor(Color.RED.value)
+                self.dlg.textBrowser_3.append( "Erreur : le chemin d'accès du dossier "+os.path.basename(data[1])+" n'existe pas")
+                self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
                 return False
             
     def run_1(self):
+        """Moteur de la partie creation d'un projet du plugin"""
+        #progresse barre
         progressBar = self.dlg.progressBar
         value = 0
         progressBar.setValue(value)
+        
         ### REMPLISSAGE DU FICHIER_CONFIGURATION_1 ###
         #initialisation de l'arbre du fichier .xml
         tree = etree.parse(os.path.join(self.plugin_dir,"fichier_configuration_1.xml"))
@@ -522,17 +562,14 @@ class CreationEtExport:
         path_construction = self.dlg.lineEdit.text()
         
         #definition des couleurs des messages
-        green_color = QColor(0,255,0,255)
-        red_color = QColor(255,0,0,255)
-        black_color = QColor(0,0,0,255)
+       
         
         #Verifications des entrees de l'utilisateur
         
-        self.dlg.textBrowser_3.setTextColor(green_color)
-        self.dlg.textBrowser_3.append( "\nCREATION D'UN PROJET")
-        self.dlg.textBrowser_3.setTextColor(red_color)
-        self.dlg.textBrowser_3.append( "Vérifications des données entrées :")
-        self.dlg.textBrowser_3.setTextColor(black_color)
+        self.dlg.textBrowser_3.append( "CREATION D'UN PROJET")
+        self.dlg.textBrowser_3.setTextColor(Color.BLUE.value)
+        self.dlg.textBrowser_3.append( "\nVérifications des données entrées :")
+        self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
         self.data_verification_dir_construction(path_construction)
         source_satellite_image = self.recovery_source_img()
 
@@ -572,25 +609,27 @@ class CreationEtExport:
         value = 45
         progressBar.setValue(value)
         #enregistrement sous un nouveau fichier parametre FIHCIER_CONFIGURATION_RESULTAT_1 
-        tree.write(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1_"+name_project+".xml"))
+        name_project = os.path.basename(path_project).replace(".qgs","")
+        tree.write(os.path.normpath(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1.xml")))
         tree.write(os.path.join(os.path.dirname(path_project),"fichier_configuration_creation_projet_"+name_project+".xml"))
-        self.dlg.textBrowser_3.setTextColor(green_color)
+        self.dlg.textBrowser_3.setTextColor(Color.GREEN.value)
         self.dlg.textBrowser_3.append( "\nLe fichier_configuration_creation_projet est disponible dans le dossier "+os.path.dirname(path_project)+"\n")
-        self.dlg.textBrowser_3.setTextColor(black_color)
+        self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
         ### LECTURE DU FICHIER_CONFIGURATION_RESULTAT_1 ###
-        tree = etree.parse(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1"+name_project+".xml"))
+        tree = etree.parse(os.path.normpath(os.path.join(self.plugin_dir,"fichier_configuration_resultat_1.xml")))
         root = tree.getroot()
         
         #creation projet QGIS
+      
         project = QgsProject.instance()
         color = QColor(166, 206, 227,255) #paramètre couleur fond projet en bleu
         project.setBackgroundColor(color)
         value = 50
         progressBar.setValue(value)
         #remplissage du journal de message du plugin
-        self.dlg.textBrowser_3.setTextColor(red_color)
-        self.dlg.textBrowser_3.append( "Chargement des couches avec les styles :")
-        self.dlg.textBrowser_3.setTextColor(black_color)
+        self.dlg.textBrowser_3.setTextColor(Color.BLUE.value)
+        self.dlg.textBrowser_3.append( "\nChargement des couches avec leur style :")
+        self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
         self.loading_layers(tree, root, project,progressBar)
         
         #zoom sur l'reach du chantier
@@ -605,13 +644,18 @@ class CreationEtExport:
         if not os.path.exists(os.path.dirname(filename_project)):
                 os.makedirs(os.path.dirname(filename_project))
         project.write(filename_project)
-        self.dlg.textBrowser_3.setTextColor(red_color)
-        self.dlg.textBrowser_3.append( "Le projet est sauvegardé à l'emplacement :"+filename_project)
+        value = 100
+        progressBar.setValue(value)
+        
+        self.dlg.textBrowser_3.setTextColor(Color.GREEN.value)
+        self.dlg.textBrowser_3.append( "\nLe projet est sauvegardé à l'emplacement :"+filename_project)
+        self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
         pass
     
-    ### PARTIE 2 ###
+###############################EXPORT DES ILLUSTRATIONS#################################################
     ### SELECTION DES DONNEES EN ENTREE ###
     def select_output_images(self):
+        """Selection de l'emplacement du dossier illustrations"""
         directory_name = QFileDialog.getExistingDirectory(self.dlg)
         self.dlg.lineEdit_3.setText(directory_name)
         
@@ -664,7 +708,7 @@ class CreationEtExport:
         return reach
      
     def filling_size_image(self, root):
-        """Remplis la balise size du fichier configuration pour connaitre l'reach de l'illustration"""
+        """Remplis la balise size du fichier configuration pour connaitre l'emprise de l'illustration"""
         for image in root[1].findall('image'):
             map_layer = image.find('map')
             reach = self.find_grid(root,image)
@@ -680,7 +724,7 @@ class CreationEtExport:
         for layer in map_layer.findall('layer'):
              if QgsProject.instance().mapLayersByName(layer.get('name'))!=[]:
                  layers.append(QgsProject.instance().mapLayersByName(layer.get('name'))[0])   
-                 self.dlg.textBrowser_3.append("La couche "+layer.get('name')+" a ete CHARGEE")
+                 self.dlg.textBrowser_3.append(layer.get('name')+" CHARGEE")
         return layers
     
     def legende(self, layout, map):
@@ -800,7 +844,7 @@ class CreationEtExport:
             exporter.exportToImage(pdf_path, QgsLayoutExporter.ImageExportSettings())
             for layer in layers:
                 iface.setActiveLayer(layer)
-            self.dlg.textBrowser_3.append(layoutName+" a bien été exportée")
+            self.dlg.textBrowser_3.append("\n"+layoutName+" exportée")
             value+=value_1
             progressBar.setValue(value)
             
@@ -817,6 +861,8 @@ class CreationEtExport:
             
       
     def run_2(self):
+        
+        #progresse barre
         progressBar = self.dlg.progressBar_2
         value = 0
         progressBar.setValue(value)
@@ -830,22 +876,22 @@ class CreationEtExport:
         
         #remplissage du journal de messages du plugin
         #definition des couleurs des messages
-        green_color = QColor(0,255,0,255)
-        red_color = QColor(255,0,0,255)
-        black_color = QColor(0,0,0,255)
+        
         
         #Verifications des entrees de l'utilisateur
-        self.dlg.textBrowser_3.setTextColor(green_color)
+  
         self.dlg.textBrowser_3.append( "\nEXPORT DES ILLUSTRATIONS")
-        self.dlg.textBrowser_3.setTextColor(red_color)
-        self.dlg.textBrowser_3.append( "Vérifications des données entrées :")
-        self.dlg.textBrowser_3.setTextColor(black_color)
+     
+        self.dlg.textBrowser_3.setTextColor(Color.BLUE.value)
+        self.dlg.textBrowser_3.append( "\nVérifications des données entrées :")
+        self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
+    
         
         #verifications des entrees de l'utilisateur
         path_img = ["des illustrations", self.dlg.lineEdit_3.text()]
         self.filling_title( root)
         self.filling_legende( root)
-        #scale = self.recovery_source_img()
+        self.filling_scale(root)
         value = 15
         progressBar.setValue(value)
         name_project = os.path.basename(QgsProject.instance().fileName()).replace(".qgs","")
@@ -866,17 +912,23 @@ class CreationEtExport:
         
         self.filling_size_image(root)
         #enregistrement sous un nouveau fichier parametre FIHCIER_CONFIGURATION_RESULTAT_2 
-        tree.write(os.path.join(self.plugin_dir,"fichier_configuration_resultat_2_"+name_project+".xml"))
+        tree.write(os.path.join(self.plugin_dir,"fichier_configuration_resultat_2.xml"))
         tree.write(os.path.join(path_img,"fichier_configuration_export_"+name_project+".xml"))
         value = 50
         progressBar.setValue(value)
         #messages
-        self.dlg.textBrowser_3.setTextColor(green_color)
-        self.dlg.textBrowser_3.append( "\nLe fichier_configuration_export est disponible dans le dossier "+path_img+"\n")
-        self.dlg.textBrowser_3.setTextColor(black_color)
+        self.dlg.textBrowser_3.setTextColor(Color.GREEN.value)
+        self.dlg.textBrowser_3.append( "\nLe fichier_configuration_export est disponible dans le dossier "+path_img)
+        self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
         
         ### LECTURE DU FICHIER_CONFIGURATION_2 ###
+        self.dlg.textBrowser_3.setTextColor(Color.BLUE.value)
+        self.dlg.textBrowser_3.append( "\nExport des illustrations :")
+        self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
         self.export(root, path_img, progressBar)
+        self.dlg.textBrowser_3.setTextColor(Color.GREEN.value)
+        self.dlg.textBrowser_3.append( "\nLes illustrations sont disponibles dans le dossier "+path_img)
+        self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
     
         
     def run(self):
@@ -896,6 +948,11 @@ class CreationEtExport:
             
             self.dlg.pushButton_3.clicked.connect(self.run_1)
             ###DEUXIEME PARTIE DU PLUGIN : EXPORT DES ILLUSTRATIONS###
+            #pre-remplissage de la zone texte export
+            name_project = os.path.basename(QgsProject.instance().fileName()).replace(".qgs","")
+            path_project = os.path.normpath(os.path.join(os.path.dirname(QgsProject.instance().fileName()),name_project+"_ILLUSTRATIONS"))
+           
+            self.dlg.lineEdit_3.setText(path_project)
             self.dlg.pushButton_2.clicked.connect(self.select_output_images)
             self.dlg.pushButton_4.clicked.connect(self.run_2)
         # show the dialog
