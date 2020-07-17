@@ -166,60 +166,60 @@
 			
 			</layer_background>
 		
-			<layer path="1_PREPA\PERF" contain="PERF_V1" layer_name="" filter="shp" id="2">
+			<layer path="1_PREPA/PERF" contain="PERF_V1" layer_name="" filter="shp" id="2">
 			</layer>
-			<layer path="1_PREPA\DC" contain="DC" layer_name="" filter="shp" id="3">
+			<layer path="1_PREPA/DC" contain="DC" layer_name="" filter="shp" id="3">
 				
 			</layer>
-			<layer path="1_PREPA\DC\REPRISES" contain="DC_REPRIS" layer_name="" filter="shp" id="4">
+			<layer path="1_PREPA/DC/REPRISES" contain="DC_REPRIS" layer_name="" filter="shp" id="4">
 				
 			</layer>
-			<layer path="1_PREPA\EMPRISE" contain="EMP_V1" layer_name="" filter="shp" id="5">
+			<layer path="1_PREPA/EMPRISE" contain="EMP_V1" layer_name="" filter="shp" id="5">
 				
 			</layer>
-			<layer path="1_PREPA\EF" contain="EMP_EF" layer_name="" filter="shp" id="6">
+			<layer path="1_PREPA/EF" contain="EMP_EF" layer_name="" filter="shp" id="6">
 				
 			</layer>
-			<layer path="1_PREPA\SPROG" contain="SPROG_V1" layer_name="" filter="shp" id="7">
+			<layer path="1_PREPA/SPROG" contain="SPROG_V1" layer_name="" filter="shp" id="7">
 			
 			</layer>
-			<layer path="1_PREPA\VILLES" contain="VILLES" layer_name="" filter="shp" id="8">
+			<layer path="1_PREPA/VILLES" contain="VILLES" layer_name="" filter="shp" id="8">
 				
 			</layer>
-			<layer path="1_PREPA\CONTRAINTES\DCZU" contain="DCZU_V2_fusion" layer_name="" filter="shp" id="9">
+			<layer path="1_PREPA/CONTRAINTES/DCZU" contain="DCZU_V2_fusion" layer_name="" filter="shp" id="9">
 				
 			</layer>
-			<layer path="1_PREPA\CONTRAINTES\DCOS" contain="DCOS_V2_fusion" layer_name="" filter="shp" id="10">
+			<layer path="1_PREPA/CONTRAINTES/DCOS" contain="DCOS_V2_fusion" layer_name="" filter="shp" id="10">
 				
 			</layer>
 		
-			<layer path="3_QUALIF_CALIX\CALIX" contain="AMERS_actifs_geo" layer_name="" filter="shp" id="11">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="AMERS_actifs_geo" layer_name="" filter="shp" id="11">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="AMERS_inactifs_geo" layer_name="" filter="shp" id="12">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="AMERS_inactifs_geo" layer_name="" filter="shp" id="12">
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="LIAISONS_actifs_geo" layer_name="" filter="shp" id="13">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="LIAISONS_actifs_geo" layer_name="" filter="shp" id="13">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="LIAISONS_inactifs_geo" layer_name="" filter="shp" id="14">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="LIAISONS_inactifs_geo" layer_name="" filter="shp" id="14">
 			
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_Caracteristix" layer_name="" filter="shp" id="15">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="SG_Caracteristix" layer_name="" filter="shp" id="15">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="SPATIO_QUALIF_geo" layer_name="" filter="shp" id="16">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="SPATIO_QUALIF_geo" layer_name="" filter="shp" id="16">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio." layer_name="" filter="shp" id="17">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="SG_EquipementSpatio." layer_name="" filter="shp" id="17">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_APPUI" layer_name="" filter="shp" id="18">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="SG_EquipementSpatio_APPUI" layer_name="" filter="shp" id="18">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="SG_EquipementSpatio_LIAISON" layer_name="" filter="shp" id="19">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="SG_EquipementSpatio_LIAISON" layer_name="" filter="shp" id="19">
 				
 			</layer>
-			<layer path="3_QUALIF_CALIX\CALIX" contain="STAT_AMER" layer_name="" filter="shp" id="20">
+			<layer path="3_QUALIF_CALIX/CALIX" contain="STAT_AMER" layer_name="" filter="shp" id="20">
 				
 			</layer>
 			
