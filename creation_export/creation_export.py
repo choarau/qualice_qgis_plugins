@@ -274,27 +274,34 @@ class CreationEtExport:
                relative_path = node.get('path')
                #construction du chemin absolue pour acceder au dossier des couches
                path_1 = os.path.normpath(os.path.join(main_path,relative_path))
-               #recovery de la liste des fichiers
-               list_files = os.listdir(path_1)
-               layer_exist = ""
-               #parcours les fichiers
-               for file in list_files:
-                   #si le fichier repond aux criteres de la sous-balise :
-                   # - creation d'un sous-element path qui contient le chemin absolu de la couche
-                   # - remplissage de l'attribut nom de la sous-balise correspondant au nom de la couche (=du fichier)
-                   if node.get('filter') in file and node.get('contain')in file:
-                       path_2 = etree.SubElement(node, "path")
-                       p = os.path.join(path_1,file)
-                       path_2.text =  os.path.normpath(p) 
-                       layer_exist += path_2.text
-                       if "SHP_Monde" in path_2.text:
-                          name = file.replace(".shp","")
-                       else:
-                          name = node.get("contain")
-                          name = name.replace(".","")
-                       node.set("layer_name",name)
-               if layer_exist=="":
-                   root[2][0].remove(node)
+               if os.path.exists(path_1):
+                   #recovery de la liste des fichiers
+                   list_files = os.listdir(path_1)
+                   layer_exist = ""
+                   #parcours les fichiers
+                   for file in list_files:
+                       #si le fichier repond aux criteres de la sous-balise :
+                       # - creation d'un sous-element path qui contient le chemin absolu de la couche
+                       # - remplissage de l'attribut nom de la sous-balise correspondant au nom de la couche (=du fichier)
+                       if node.get('filter') in file and node.get('contain')in file:
+                           path_2 = etree.SubElement(node, "path")
+                           p = os.path.join(path_1,file)
+                           path_2.text =  os.path.normpath(p) 
+                           layer_exist += path_2.text
+                           if "SHP_Monde" in path_2.text:
+                              name = file.replace(".shp","")
+                           else:
+                              name = node.get("contain")
+                              name = name.replace(".","")
+                           node.set("layer_name",name)
+                   if layer_exist=="":
+                       root[2][0].remove(node)
+                
+               else:
+                   self.dlg.textBrowser_3.setTextColor(Color.RED.value)
+                   self.dlg.textBrowser_3.append("Erreur : le dossier "+path_1+" n'existe pas")
+                   iface.messageBar().pushMessage("Erreur","Erreur : le dossier "+path_1+" n'existe pas", level=Qgis.Warning)
+                   self.dlg.textBrowser_3.setTextColor(Color.BLACK.value)
                        
                        
        else:
