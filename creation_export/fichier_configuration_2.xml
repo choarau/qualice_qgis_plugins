@@ -7,6 +7,7 @@
 	</properties>
 	<export>
 		<image>
+			<filename>Figure_PU_Chantier</filename>
 			<title exist="no">PU du chantier</title>
 			<map exist="yes">
 				<layer name="EMPRISE_PU_CHANTIER"/>
@@ -25,6 +26,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Emprise_Chantier</filename>
 			<title exist="no">Emprise du chantier</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_EF"/>
@@ -42,6 +44,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Images_Sources</filename>
 			<title exist="no">Images sources pour le chantier</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_NOM"/>
@@ -63,6 +66,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Incidence_Moyenne</filename>
 			<title exist="no">Incidence moyenne</title>
 			<map exist="yes">
 				<layer name="INCIDENCE_MOY"/>
@@ -78,6 +82,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Incidence_Maximale</filename>
 			<title exist="no">Incidence maximale</title>
 			<map exist="yes">
 				<layer name="INCIDENCE_MOY"/>
@@ -94,6 +99,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Incidence_DCZU</filename>
 			<title exist="no">Angles d'incidence sur les zones DCZU</title>
 			<map exist="yes">
 				<layer name="URBAIN"/>
@@ -112,6 +118,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Angles_Relief</filename>
 			<title exist="no">Respect des contraintes d'angles sur zones de relief</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -129,6 +136,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Alertes_Appui</filename>
 			<title exist="no">Alertes sur l'équipement en appui</title>
 			<map exist="yes">
 				<layer name="ALERTES_APPUI"/>
@@ -143,6 +151,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Alertes_Liaison</filename>
 			<title exist="no">Alertes sur l'équipement en liaison</title>
 			<map exist="yes">
 				<layer name="ALERTES_LIAISON"/>
@@ -157,6 +166,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Alertes_Recalage</filename>
 			<title exist="no">Alertes sur les paramètres de recalage</title>
 			<map exist="yes">
 				<layer name="PRECALAGE_PLEIADE"/>
@@ -174,6 +184,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Biais_Appui</filename>
 			<title exist="no">Biais XY sur les points d'appui</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -189,6 +200,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_EcartType_Appui</filename>
 			<title exist="no">Ecarts-types XY sur les points d'appui</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -204,6 +216,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_Biais_Liaison</filename>
 			<title exist="no">Biais XY sur les points de liaison</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -219,6 +232,7 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
+			<filename>Figure_EcartType_Liaison</filename>
 			<title exist="no">Ecarts-types XY sur les points de liaison</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -233,8 +247,9 @@
 			</legende>
 			<scale exist="no"></scale>
 		</image>
-		<image>
-			<title exist="no">Localisation des alertes du contrôle sur la BD_AMER </title>
+		<image>	
+			<filename>Figure_BD_AMER</filename>
+			<title exist="no">Localisation des alertes du contrôle sur la BD_AMER</title>
 			<map exist="yes">
 				<layer name="STAT_AMER"/>
 				<layer name="CARTO_MONDIALE"/>
@@ -249,7 +264,8 @@
 			<scale exist="no"></scale>
 		</image>
 		<image>
-			<title exist="no">Mesures géométriques sur données d’appu</title>
+			<filename>Figure_Geometrie_DAP</filename>
+			<title exist="no">Mesures géométriques sur données d’appui</title>
 			<map exist="yes">
 				<layer name="EMPILEMENTS"/>
 				<layer name="ALBATROS"/>

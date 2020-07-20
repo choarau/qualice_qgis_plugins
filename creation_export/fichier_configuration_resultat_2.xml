@@ -1,11 +1,12 @@
 <export_images>
 	<properties>
-		<name_project>TEST_MARA_OR4.qgs</name_project>
-		<path_project>D:\DONNEES_STAGE\Test_projet\TEST_MARA_OR4.qgs</path_project>
-		<path>D:\DONNEES_STAGE\Test_projet\Nouveau dossier (2)</path>
+		<name_project>projet.qgs</name_project>
+		<path_project>D:\DONNEES_STAGE\Test_projet\TESTS\projet.qgs</path_project>
+		<path>D:\DONNEES_STAGE\Test_projet\TESTS\ILLUSTRATIONSprojet</path>
 	</properties>
 	<export>
 		<image>
+			<filename>Figure_PU_Chantier</filename>
 			<title exist="no">PU du chantier</title>
 			<map exist="yes">
 				<layer name="EMPRISE_PU_CHANTIER"/>
@@ -24,6 +25,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Emprise_Chantier</filename>
 			<title exist="no">Emprise du chantier</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_EF"/>
@@ -41,6 +43,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Images_Sources</filename>
 			<title exist="no">Images sources pour le chantier</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_NOM"/>
@@ -62,6 +65,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Incidence_Moyenne</filename>
 			<title exist="no">Incidence moyenne</title>
 			<map exist="yes">
 				<layer name="INCIDENCE_MOY"/>
@@ -77,6 +81,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Incidence_Maximale</filename>
 			<title exist="no">Incidence maximale</title>
 			<map exist="yes">
 				<layer name="INCIDENCE_MOY"/>
@@ -93,6 +98,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Incidence_DCZU</filename>
 			<title exist="no">Angles d'incidence sur les zones DCZU</title>
 			<map exist="yes">
 				<layer name="URBAIN"/>
@@ -111,6 +117,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Angles_Relief</filename>
 			<title exist="no">Respect des contraintes d'angles sur zones de relief</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -128,6 +135,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Alertes_Appui</filename>
 			<title exist="no">Alertes sur l'&#233;quipement en appui</title>
 			<map exist="yes">
 				<layer name="ALERTES_APPUI"/>
@@ -142,6 +150,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Alertes_Liaison</filename>
 			<title exist="no">Alertes sur l'&#233;quipement en liaison</title>
 			<map exist="yes">
 				<layer name="ALERTES_LIAISON"/>
@@ -156,6 +165,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Alertes_Recalage</filename>
 			<title exist="no">Alertes sur les param&#232;tres de recalage</title>
 			<map exist="yes">
 				<layer name="PRECALAGE_PLEIADE"/>
@@ -173,6 +183,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Biais_Appui</filename>
 			<title exist="no">Biais XY sur les points d'appui</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -188,6 +199,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_EcartType_Appui</filename>
 			<title exist="no">Ecarts-types XY sur les points d'appui</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -203,6 +215,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_Biais_Liaison</filename>
 			<title exist="no">Biais XY sur les points de liaison</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -218,6 +231,7 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
+			<filename>Figure_EcartType_Liaison</filename>
 			<title exist="no">Ecarts-types XY sur les points de liaison</title>
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
@@ -232,8 +246,9 @@
 			</legende>
 			<scale exist="yes"/>
 		</image>
-		<image>
-			<title exist="no">Localisation des alertes du contr&#244;le sur la BD_AMER </title>
+		<image>	
+			<filename>Figure_BD_AMER</filename>
+			<title exist="no">Localisation des alertes du contr&#244;le sur la BD_AMER</title>
 			<map exist="yes">
 				<layer name="STAT_AMER"/>
 				<layer name="CARTO_MONDIALE"/>
@@ -248,7 +263,8 @@
 			<scale exist="yes"/>
 		</image>
 		<image>
-			<title exist="no">Mesures g&#233;om&#233;triques sur donn&#233;es d&#8217;appu</title>
+			<filename>Figure_Geometrie_DAP</filename>
+			<title exist="no">Mesures g&#233;om&#233;triques sur donn&#233;es d&#8217;appui</title>
 			<map exist="yes">
 				<layer name="EMPILEMENTS"/>
 				<layer name="ALBATROS"/>

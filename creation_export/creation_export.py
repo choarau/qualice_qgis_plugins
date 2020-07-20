@@ -629,7 +629,7 @@ class CreationEtExport:
         #creation projet QGIS
       
         project = QgsProject.instance()
-        if  Qgis.QGIS_VERSION_INT!=31006:
+        if Qgis.QGIS_VERSION_INT==int('31006'):
             color = QColor(166, 206, 227,255) #paramètre couleur fond projet en bleu
             project.setBackgroundColor(color)
         value = 50
@@ -783,6 +783,7 @@ class CreationEtExport:
         value_1 = 50/len(root[1].findall('image'))
         value = 50
         for image in root[1].findall('image'):
+            filename = image.find('filename').text
             layoutName = image.find('title').text
             layouts_list = manager.printLayouts()
             #supprime la mise en page si elle existe deja
@@ -818,19 +819,21 @@ class CreationEtExport:
             
             map_layer = image.find('map')
             #pour l'reach de l'image
-            mini, maxi = map_layer.find('size').text.split(":")
-            xmin, ymin = mini.split(",")
-            xmax, ymax = maxi.split(",")
-            reach = QgsRectangle(float(xmin)-3.0,float(ymin)-3.0,float(xmax)+3.0,float(ymax)+3.0)
-            ms.setExtent(reach)
-            ms.setBackgroundColor(color)
-            map.setExtent(reach)
+            if map_layer.find('size').text!='Empty':
+                mini, maxi = map_layer.find('size').text.split(":")
+                xmin, ymin = mini.split(",")
+                xmax, ymax = maxi.split(",")
+                reach = QgsRectangle(float(xmin)-3.0,float(ymin)-3.0,float(xmax)+3.0,float(ymax)+3.0)
+         
+                ms.setExtent(reach)
+                ms.setBackgroundColor(color)
+                map.setExtent(reach)
             
             #ajout de la carte à la mise en page
             layout.addLayoutItem(map) # add map to the layout
             
-            map.attemptMove(QgsLayoutPoint(5,20,QgsUnitTypes.LayoutMillimeters))
-            map.attemptResize(QgsLayoutSize(180,180,QgsUnitTypes.LayoutMillimeters))
+            map.attemptMove(QgsLayoutPoint(0,0,QgsUnitTypes.LayoutMillimeters))
+            map.attemptResize(QgsLayoutSize(225,225,QgsUnitTypes.LayoutMillimeters))
           
             #ajout legende
             if image.find('legende').get('exist')=="yes":
@@ -846,13 +849,13 @@ class CreationEtExport:
         
             
             # base_path = os.path.join(QgsProject.instance().homePath())
-            pdf_path = os.path.join(path_img, layoutName+".png")
+            pdf_path = os.path.join(path_img, filename+".png")
 
             exporter = QgsLayoutExporter(layout)
             exporter.exportToImage(pdf_path, QgsLayoutExporter.ImageExportSettings())
             for layer in layers:
                 iface.setActiveLayer(layer)
-            self.dlg.textBrowser_3.append("\n"+layoutName+" exportée")
+            self.dlg.textBrowser_3.append("\n"+filename+" exportée")
             value+=value_1
             progressBar.setValue(value)
             
