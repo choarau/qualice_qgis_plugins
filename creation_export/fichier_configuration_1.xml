@@ -171,10 +171,10 @@
 			<layer path="1_PREPA/DC" contain="DC" layer_name="" filter="shp" id="3">
 				
 			</layer>
-			<layer path="1_PREPA/DC/REPRISES" contain="DC_REPRIS" layer_name="" filter="shp" id="4">
+			<layer path="1_PREPA/DC/DC_REPRISES" contain="DC_REPRIS" layer_name="" filter="shp" id="4">
 				
 			</layer>
-			<layer path="1_PREPA/EMPRISE" contain="EMP_V1" layer_name="" filter="shp" id="5">
+			<layer path="1_PREPA/EMP" contain="EMP_V1" layer_name="" filter="shp" id="5">
 				
 			</layer>
 			<layer path="1_PREPA/EF" contain="EMP_EF" layer_name="" filter="shp" id="6">

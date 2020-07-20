@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/creation_export_v2" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
