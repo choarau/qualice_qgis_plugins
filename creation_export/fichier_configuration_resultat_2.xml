@@ -22,7 +22,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Emprise_Chantier</filename>
@@ -40,7 +40,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Images_Sources</filename>
@@ -62,7 +62,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Incidence_Moyenne</filename>
@@ -78,7 +78,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Incidence_Maximale</filename>
@@ -95,7 +95,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Incidence_DCZU</filename>
@@ -114,7 +114,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Angles_Relief</filename>
@@ -132,7 +132,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Alertes_Appui</filename>
@@ -147,7 +147,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Alertes_Liaison</filename>
@@ -162,7 +162,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Alertes_Recalage</filename>
@@ -180,7 +180,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Biais_Appui</filename>
@@ -196,7 +196,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_EcartType_Appui</filename>
@@ -212,7 +212,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Biais_Liaison</filename>
@@ -228,7 +228,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_EcartType_Liaison</filename>
@@ -244,7 +244,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>	
 			<filename>Figure_BD_AMER</filename>
@@ -260,7 +260,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 		<image>
 			<filename>Figure_Geometrie_DAP</filename>
@@ -278,7 +278,7 @@
 				<x/>
 				<y/>
 			</legende>
-			<scale exist="yes"/>
+			<scale exist="no"/>
 		</image>
 	</export>
 </export_images>

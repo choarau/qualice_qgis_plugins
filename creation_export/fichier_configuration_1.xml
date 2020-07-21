@@ -61,16 +61,13 @@
 
 		</layer_group>
 		<layer_group name="CPP" value="Controle de la precision planimetrique">
-			<layer layer_name="SG_Caracteristix" style_name="Style_Incidence_sup_25">
+			<layer layer_name="SG_Caracteristix" style_name="Style_incidence_moy">
 				<name>INCIDENCE_MOY</name>
 			</layer>
-			<layer layer_name="SG_Caracteristix" style_name="Style_Incidence_sup_25">
-				<name>INCIDENCE_MOY</name>
-			</layer>
-			<layer layer_name="SG_Caracteristix" style_name="Style_Incidence_MAX_SPOT">
+			<layer layer_name="SG_Caracteristix" style_name="Style_incidence_max">
 				<name>INCIDENCE_MAX</name>
 			</layer>
-			<layer layer_name="SG_Caracteristix" style_name="Style_Incidence_sup_25">
+			<layer layer_name="SG_Caracteristix" style_name="Style_incidence_moy">
 				<name>INCIDENCE</name>
 			</layer>
 			<layer layer_name="DCZU_V2_fusion" style_name="Style_Urbain_Dense">
@@ -136,7 +133,7 @@
 			<layer layer_name="EMP_V1" style_name="Style_Emprise_Chantier_N">
 				<name>EMPRISE_CHANTIER_NOM</name>
 			</layer>
-			<layer layer_name="Zones_ARC" style_name="">
+			<layer layer_name="Zones_ARC" style_name="Style_ARC">
 				<name>ZONES_ARC</name>
 			</layer>
 			<layer layer_name="EMP_EF" style_name="Style_EF">

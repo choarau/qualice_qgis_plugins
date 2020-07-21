@@ -69,8 +69,9 @@
 			<filename>Figure_Incidence_Moyenne</filename>
 			<title exist="no">Incidence moyenne</title>
 			<map exist="yes">
-				<layer name="INCIDENCE_MOY"/>
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<layer name="INCIDENCE_MOY"/>
+				<layer name="CARTO_MONDIALE"/>
 				<size></size>
 			</map>
 			<legende exist="yes">
@@ -85,9 +86,9 @@
 			<filename>Figure_Incidence_Maximale</filename>
 			<title exist="no">Incidence maximale</title>
 			<map exist="yes">
-				<layer name="INCIDENCE_MOY"/>
-				<layer name="INCIDENCE_MAX"/>
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
+				<layer name="INCIDENCE_MAX"/>
+				<layer name="CARTO_MONDIALE"/>
 				<size></size>
 			</map>
 			<legende exists="yes">
@@ -139,7 +140,9 @@
 			<filename>Figure_Alertes_Appui</filename>
 			<title exist="no">Alertes sur l'équipement en appui</title>
 			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="ALERTES_APPUI"/>
+				<layer name="CARTO_MONDIALE"/>
 				<size></size>
 			</map>
 			<legende exist="yes">
@@ -154,7 +157,9 @@
 			<filename>Figure_Alertes_Liaison</filename>
 			<title exist="no">Alertes sur l'équipement en liaison</title>
 			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="ALERTES_LIAISON"/>
+				<layer name="CARTO_MONDIALE"/>
 				<size></size>
 			</map>
 			<legende exist="yes">
@@ -189,6 +194,7 @@
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="BIAIS_APPUI"/>
+				<layer name="CARTO_MONDIALE"/>
 				<size></size>
 			</map>
 			<legende exist="yes">
@@ -205,6 +211,7 @@
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="ECARTTYPE_APPUI"/>
+				<layer name="CARTO_MONDIALE"/>
 				<size></size>
 			</map>
 			<legende exist="yes">
@@ -221,6 +228,7 @@
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="BIAIS_LIAISON"/>
+				<layer name="CARTO_MONDIALE"/>
 				<size></size>
 			</map>
 			<legende exist="yes">
@@ -237,6 +245,7 @@
 			<map exist="yes">
 				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="ECARTTYPE_LIAISON"/>
+				<layer name="CARTO_MONDIALE"/>
 				<size></size>
 			</map>
 			<legende exist="yes">
@@ -251,6 +260,7 @@
 			<filename>Figure_BD_AMER</filename>
 			<title exist="no">Localisation des alertes du contrôle sur la BD_AMER</title>
 			<map exist="yes">
+				<layer name="EMPRISE_CHANTIER_SSNOM"/>
 				<layer name="STAT_AMER"/>
 				<layer name="CARTO_MONDIALE"/>
 				<size></size>

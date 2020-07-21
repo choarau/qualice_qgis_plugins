@@ -50,6 +50,7 @@ from qgis.core import (
     QgsScaleBarSettings,
     QgsLayoutItemScaleBar,
     QgsLayoutItemLabel,
+    QgsVectorLayerFeatureCounter,
     
 
 )
@@ -743,6 +744,7 @@ class CreationEtExport:
         legend.refresh()     
         layout.addLayoutItem(legend)
         legend.attemptMove(QgsLayoutPoint(200,100,QgsUnitTypes.LayoutMillimeters))
+        legend.attemptResize(QgsLayoutSize(5,5,QgsUnitTypes.LayoutMillimeters))
     
     def title(self, layout,layoutName, map):
         """Ajout d'un titre a l'illustration"""
@@ -823,7 +825,7 @@ class CreationEtExport:
                 mini, maxi = map_layer.find('size').text.split(":")
                 xmin, ymin = mini.split(",")
                 xmax, ymax = maxi.split(",")
-                reach = QgsRectangle(float(xmin)-3.0,float(ymin)-3.0,float(xmax)+3.0,float(ymax)+3.0)
+                reach = QgsRectangle(float(xmin)-2.0,float(ymin)-2.0,float(xmax)+2.0,float(ymax)+2.0)
          
                 ms.setExtent(reach)
                 ms.setBackgroundColor(color)
@@ -833,7 +835,7 @@ class CreationEtExport:
             layout.addLayoutItem(map) # add map to the layout
             
             map.attemptMove(QgsLayoutPoint(0,0,QgsUnitTypes.LayoutMillimeters))
-            map.attemptResize(QgsLayoutSize(225,225,QgsUnitTypes.LayoutMillimeters))
+            map.attemptResize(QgsLayoutSize(220,210,QgsUnitTypes.LayoutMillimeters))
           
             #ajout legende
             if image.find('legende').get('exist')=="yes":
