@@ -88,7 +88,7 @@
 			<layer layer_name="SG_EquipementSpatio_APPUI" style_name="Alerte_Equip_Appui_Details">
 				<name>ALERTES_APPUI</name>
 			</layer>
-			<layer layer_name="SG_EquipementSpatio_LIAISON" style_name="Alerte_Equip_Appui_Liaison">
+			<layer layer_name="SG_EquipementSpatio_LIAISON" style_name="Alerte_Equip_Liaison">
 				<name>ALERTES_LIAISON</name>
 			</layer>
 			<layer layer_name="SPATIO_QUALIF_geo" style_name="Style_PHR_Precalage">
@@ -156,10 +156,10 @@
 	<project_import>
 		<layers_import>
 		
-			<layer_background path="CARTO_MONDIALE" contain="" layer_name="" filter="shp" id="0">
+			<layer_background path="CARTO_MONDIALE" contain="CARTO_MONDIALE" layer_name="" filter="shp" id="0">
 			
 			</layer_background>
-			<layer_background path="Zones_ARC" contain="" layer_name="" filter="shp" id="1">
+			<layer_background path="Zones_ARC" contain="Zones_ARC" layer_name="" filter="shp" id="1">
 			
 			</layer_background>
 		
